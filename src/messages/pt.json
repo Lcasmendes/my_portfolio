@@ -49,7 +49,7 @@
     "current": "Atual",
     "items": [
       {
-        "title": "Engenheiro de Dados (Estágio)",
+        "title": "Engenheiro de Dados & Desenvolvedor Full-stack (Estágio)",
         "org": "Deep Metrics",
         "tag": "Experiência",
         "logo": "/institutions/deepmetrics.png",
@@ -58,9 +58,9 @@
           "10 pipelines de ETL em produção (n8n + Cloud Run) conectando 8+ plataformas de mídia e CRM — Meta, Google e Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive e RD Station — ao BigQuery.",
           "Tracking server-side com GTM enviando conversões em paralelo para GA4, Meta, Google e Microsoft Ads — atribuição cross-channel e sinais melhores para os algoritmos de campanha.",
           "Modelagem no BigQuery mapeando a jornada completa do cliente, do primeiro lead até a conversão no CRM.",
-          "Dashboard principal no Looker Studio consolidando todos os canais de aquisição numa visão única e acionável.",
-          "Scripts em Python e SQL avançado para tratamento, enriquecimento e integração de dados entre sistemas.",
-          "Plataforma interna em React + TypeScript (Supabase + BigQuery) para aposentar os dashboards estáticos."
+          "Dashboards de marketing em JavaScript, HTML e CSS com Vite e Chart.js, substituindo os dashboards estáticos por uma interface dinâmica.",
+          "Back-end em Node/Express servindo os dados do BigQuery e do Supabase, com cache para performance.",
+          "Scripts em Python e SQL avançado para tratamento, enriquecimento e integração de dados entre sistemas."
         ]
       },
       {
@@ -72,8 +72,7 @@
         "lines": [
           "30+ telas no Figma e em React + TypeScript para uma plataforma de diagnóstico médico por imagem.",
           "Dois perfis de acesso (usuário e administrador), além da landing page e dos fluxos de autenticação e cadastro.",
-          "Componentes reutilizáveis para renderizar exames DICOM e NIFTI direto no navegador.",
-          "Integração completa com a API backend: envio, recebimento e renderização de imagens médicas.",
+          "Integração completa com a API backend para envio e recebimento de dados da plataforma.",
           "Sistema de cadastro, login e sessão de usuário.",
           "Iteração de design em V1 → V2 antes de codar — UX validada na prototipação, menos retrabalho.",
           "Bolsa FAPESP de Treinamento Técnico em Desenvolvimento Web (pesquisa científica na UFSCar)."
@@ -120,12 +119,12 @@
         "name": "BIP-Brain",
         "tag": "Plataforma Web · BipGroup (UFSCar)",
         "status": "Em produção",
-        "description": "Plataforma que ajuda radiologistas e neurologistas a diagnosticar Alzheimer e Esclerose Múltipla a partir de imagens médicas. Liderei o front-end: 30+ telas, visualização de DICOM/NIFTI no navegador e toda a integração com a API.",
+        "description": "Plataforma que ajuda radiologistas e neurologistas a diagnosticar Alzheimer e Esclerose Múltipla a partir de imagens médicas. Atuei no front-end: 30+ telas, fluxos de autenticação e cadastro e toda a integração com a API.",
         "image": "/projects/bip-brain.png",
         "imageAlt": "Página inicial da plataforma BIP-Brain",
         "url": "https://www.brain.ufscar.br/pt",
         "linkLabel": "Acessar a plataforma",
-        "techs": ["React", "TypeScript", "Figma", "DICOM", "NIFTI"]
+        "techs": ["React", "TypeScript", "Figma", "CSS"]
       },
       {
         "name": "Segurança automática para microsserviços",
@@ -162,6 +161,7 @@
         "desc": "Microsserviços, autenticação e controle de acesso.",
         "items": [
           { "name": "Python", "desc": "Automação e manipulação de dados." },
+          { "name": "Node.js / Express", "desc": "Back-end dos dashboards de dados na Deep Metrics, servindo BigQuery e Supabase." },
           { "name": "Microsserviços", "desc": "Tema do meu TCC: migração de monólito para microsserviços." },
           { "name": "Keycloak", "desc": "Provedor de identidade self-hosted que usei para gerar autenticação/autorização." },
           { "name": "RBAC", "desc": "Controle de acesso baseado em funções, implementado sobre o Keycloak." }

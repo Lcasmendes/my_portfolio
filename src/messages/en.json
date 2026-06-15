@@ -49,7 +49,7 @@
     "current": "Present",
     "items": [
       {
-        "title": "Data Engineer (Internship)",
+        "title": "Data Engineer & Full-stack Developer (Internship)",
         "org": "Deep Metrics",
         "tag": "Experience",
         "logo": "/institutions/deepmetrics.png",
@@ -58,9 +58,9 @@
           "10 production ETL pipelines (n8n + Cloud Run) connecting 8+ ad & CRM platforms — Meta, Google and Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive and RD Station — into BigQuery.",
           "Server-side GTM tracking sending conversions in parallel to GA4, Meta, Google and Microsoft Ads — cross-channel attribution and stronger signals for the campaign algorithms.",
           "BigQuery modeling that maps the full customer journey, from first lead to conversion in the CRM.",
-          "Main Looker Studio dashboard consolidating every acquisition channel into one actionable view.",
-          "Python scripts and advanced SQL for cleaning, enriching and integrating data across systems.",
-          "Internal platform in React + TypeScript (Supabase + BigQuery) to retire the static dashboards."
+          "Marketing dashboards in JavaScript, HTML and CSS with Vite and Chart.js, replacing the static dashboards with a dynamic interface.",
+          "Node/Express backend serving the data from BigQuery and Supabase, with caching for performance.",
+          "Python scripts and advanced SQL for cleaning, enriching and integrating data across systems."
         ]
       },
       {
@@ -72,8 +72,7 @@
         "lines": [
           "30+ screens in Figma and React + TypeScript for a medical-imaging diagnosis platform.",
           "Two access profiles (user and administrator), plus the landing page and the auth/sign-up flows.",
-          "Reusable components to render DICOM and NIFTI exams right in the browser.",
-          "Full backend API integration: sending, receiving and rendering medical images.",
+          "Full backend API integration for sending and receiving platform data.",
           "Sign-up, login and user-session system.",
           "Design iterated V1 → V2 before coding — UX validated in prototyping, less rework.",
           "FAPESP scholarship in Technical Training for Web Development (scientific research at UFSCar)."
@@ -120,12 +119,12 @@
         "name": "BIP-Brain",
         "tag": "Web Platform · BipGroup (UFSCar)",
         "status": "In production",
-        "description": "A platform that helps radiologists and neurologists diagnose Alzheimer's and Multiple Sclerosis from medical imaging. I led the front-end: 30+ screens, in-browser DICOM/NIFTI visualization and the full API integration.",
+        "description": "A platform that helps radiologists and neurologists diagnose Alzheimer's and Multiple Sclerosis from medical imaging. I worked on the front-end: 30+ screens, authentication and sign-up flows, and the full API integration.",
         "image": "/projects/bip-brain.png",
         "imageAlt": "BIP-Brain platform landing page",
         "url": "https://www.brain.ufscar.br/pt",
         "linkLabel": "Visit the platform",
-        "techs": ["React", "TypeScript", "Figma", "DICOM", "NIFTI"]
+        "techs": ["React", "TypeScript", "Figma", "CSS"]
       },
       {
         "name": "Automatic security for microservices",
@@ -162,6 +161,7 @@
         "desc": "Microservices, authentication and access control.",
         "items": [
           { "name": "Python", "desc": "Automation and data manipulation." },
+          { "name": "Node.js / Express", "desc": "Backend of the data dashboards at Deep Metrics, serving BigQuery and Supabase." },
           { "name": "Microservices", "desc": "The subject of my thesis: monolith-to-microservices migration." },
           { "name": "Keycloak", "desc": "Self-hosted identity provider I used to generate auth logic." },
           { "name": "RBAC", "desc": "Role-Based Access Control, implemented on top of Keycloak." }
