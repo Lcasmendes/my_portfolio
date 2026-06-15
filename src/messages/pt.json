@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "name": "Lucas Silva Mendes",
+    "role": "Desenvolvedor Full-stack",
+    "tagline": "Front-end · Cloud · Dados",
+    "siteTitle": "Lucas Mendes — Portfólio",
+    "siteDescription": "Lucas Silva Mendes — desenvolvedor full-stack que constrói da interface ao dado."
+  },
+  "nav": {
+    "menu": "Menu",
+    "about": "Sobre",
+    "journey": "Trajetória",
+    "projects": "Projetos",
+    "skills": "Habilidades",
+    "soundOn": "Ativar som",
+    "soundOff": "Desativar som",
+    "open": "Abrir menu",
+    "close": "Fechar",
+    "wheelHint": "SELECIONE UM DESTINO"
+  },
+  "about": {
+    "title": "Sobre",
+    "subtitle": "Quem está por trás do código",
+    "welcome": "Olá, seja bem-vindo",
+    "welcomeText": "Sou Lucas Silva Mendes — desenvolvedor full-stack que constrói da interface ao dado. Fique à vontade para explorar.",
+    "bioKicker": "O que eu faço",
+    "bio": [
+      { "title": "Front-end", "desc": "React, Next.js e TypeScript para interfaces complexas e responsivas." },
+      { "title": "Cloud & Dados", "desc": "Pipelines de ETL em produção na GCP, BigQuery e automação de integrações." },
+      { "title": "Back-end & Segurança", "desc": "Microsserviços, autenticação e controle de acesso com Keycloak e RBAC." },
+      { "title": "Visão de produto", "desc": "Da modelagem de dados até a tela do usuário, ponta a ponta." },
+      { "title": "Experiência real", "desc": "BIP-Brain (saúde) e plataformas de dados na Deep Metrics." },
+      { "title": "Formação", "desc": "Eng. da Computação na UFSCar e base militar na EPCAR." }
+    ],
+    "focusLabel": "Áreas de atuação",
+    "focusHint": "Passe o mouse sobre uma área",
+    "attributes": [
+      { "label": "Front-end", "value": 92 },
+      { "label": "Cloud & Infra", "value": 84 },
+      { "label": "Dados", "value": 78 },
+      { "label": "Back-end", "value": 68 },
+      { "label": "Segurança", "value": 72 },
+      { "label": "UX / Design", "value": 76 }
+    ]
+  },
+  "journey": {
+    "title": "Trajetória",
+    "subtitle": "Onde estive e o que entreguei",
+    "current": "Atual",
+    "items": [
+      {
+        "title": "Engenheiro de Dados (Estágio)",
+        "org": "Deep Metrics",
+        "tag": "Experiência",
+        "logo": "/institutions/deepmetrics.png",
+        "period": "09/2025 – Atual",
+        "lines": [
+          "10 pipelines de ETL em produção centralizando 8 fontes de mídia e CRM no BigQuery.",
+          "Tracking server-side com GTM alimentando GA4, Meta, Google e Microsoft Ads em paralelo — atribuição cross-channel de verdade.",
+          "Dashboard único no Looker Studio consolidando todos os canais de aquisição do cliente.",
+          "Plataforma interna em React + Supabase + BigQuery para aposentar os dashboards estáticos."
+        ]
+      },
+      {
+        "title": "Desenvolvedor Front-end",
+        "org": "BipGroup · UFSCar",
+        "tag": "Experiência",
+        "logo": "/institutions/ufscar.png",
+        "period": "03/2024 – 09/2025",
+        "lines": [
+          "30+ telas em React + TypeScript — de dois perfis de acesso à landing e à autenticação.",
+          "Visualizador de exames DICOM e NIFTI rodando direto no navegador.",
+          "Integração completa com a API: envio, recebimento e renderização de imagens médicas.",
+          "Protótipos iterados no Figma (V1 → V2) antes de codar — menos retrabalho, melhor UX.",
+          "Bolsa FAPESP de Treinamento Técnico em Desenvolvimento Web."
+        ]
+      },
+      {
+        "title": "Monitor — Introdução ao Pensamento Algorítmico",
+        "org": "UFSCar",
+        "tag": "Acadêmico",
+        "logo": "/institutions/ufscar.png",
+        "period": "Durante a graduação",
+        "lines": [
+          "Apoiei calouros nos fundamentos de lógica e programação."
+        ]
+      },
+      {
+        "title": "Engenharia da Computação",
+        "org": "UFSCar",
+        "tag": "Formação",
+        "logo": "/institutions/ufscar.png",
+        "period": "08/2021 – 07/2026",
+        "lines": [
+          "Bacharelado unindo software e hardware: algoritmos, redes e sistemas distribuídos.",
+          "TCC sobre geração automática de autenticação e autorização em microsserviços."
+        ]
+      },
+      {
+        "title": "EPCAR — Escola Preparatória de Cadetes do Ar",
+        "org": "Força Aérea Brasileira · Barbacena/MG",
+        "tag": "Formação",
+        "logo": "/institutions/epcar.svg",
+        "period": "01/2017 – 12/2019",
+        "lines": [
+          "Ensino médio de excelência da FAB, voltado a formar futuros oficiais aviadores — exatas e disciplina no limite."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Projetos",
+    "subtitle": "O que eu construí",
+    "items": [
+      {
+        "name": "BIP-Brain",
+        "tag": "Plataforma Web · BipGroup (UFSCar)",
+        "status": "Em produção",
+        "description": "Plataforma que ajuda radiologistas e neurologistas a diagnosticar Alzheimer e Esclerose Múltipla a partir de imagens médicas. Liderei o front-end: 30+ telas, visualização de DICOM/NIFTI no navegador e toda a integração com a API.",
+        "image": "/projects/bip-brain.png",
+        "imageAlt": "Página inicial da plataforma BIP-Brain",
+        "url": "https://www.brain.ufscar.br/pt",
+        "linkLabel": "Acessar a plataforma",
+        "techs": ["React", "TypeScript", "Figma", "DICOM", "NIFTI"]
+      },
+      {
+        "name": "Segurança automática para microsserviços",
+        "tag": "Trabalho de Conclusão de Curso",
+        "status": "UFSCar · orientação Prof. Daniel Lucredio",
+        "description": "Como deixar microsserviços seguros sem configurar autenticação na mão? Meu TCC estende a ferramenta js-distributor para gerar controle de acesso (RBAC) com Keycloak automaticamente, a partir de uma configuração inicial — validado em sistemas de exemplo.",
+        "url": "https://repositorio.ufscar.br/items/0818b143-f555-4546-a606-356bbd25a061",
+        "linkLabel": "Ver no repositório da UFSCar",
+        "techs": ["Keycloak", "RBAC", "Microsserviços", "Geração de Código"]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Habilidades",
+    "subtitle": "Stack & Competências",
+    "treeHint": "Passe o mouse ou toque em um nó para ver onde apliquei cada habilidade",
+    "prevTab": "Área anterior",
+    "nextTab": "Próxima área",
+    "categories": [
+      {
+        "name": "Front-end",
+        "desc": "Interfaces complexas e responsivas, do protótipo ao código.",
+        "items": [
+          { "name": "React", "desc": "Base das interfaces do BipGroup (30+ telas) e da plataforma interna de dados na Deep Metrics." },
+          { "name": "Next.js", "desc": "Framework React que uso para construir interfaces — inclusive este portfólio." },
+          { "name": "TypeScript", "desc": "Tipagem estática em todo projeto React que toco." },
+          { "name": "JavaScript", "desc": "Linguagem base do front-end e das automações de pipeline." },
+          { "name": "CSS (responsivo)", "desc": "Layouts que funcionam em qualquer tela." },
+          { "name": "Figma", "desc": "Prototipo e itero fluxos antes de escrever uma linha de código." }
+        ]
+      },
+      {
+        "name": "Back-end & Segurança",
+        "desc": "Microsserviços, autenticação e controle de acesso.",
+        "items": [
+          { "name": "Python", "desc": "Automação e manipulação de dados." },
+          { "name": "Microsserviços", "desc": "Tema do meu TCC: migração de monólito para microsserviços." },
+          { "name": "Keycloak", "desc": "Provedor de identidade self-hosted que usei para gerar autenticação/autorização." },
+          { "name": "RBAC", "desc": "Controle de acesso baseado em funções, implementado sobre o Keycloak." }
+        ]
+      },
+      {
+        "name": "Cloud & Infra",
+        "desc": "Pipelines de dados e infraestrutura em nuvem.",
+        "items": [
+          { "name": "GCP (Cloud Run, BigQuery)", "desc": "10 pipelines de ETL em produção, dados centralizados no BigQuery." },
+          { "name": "Docker", "desc": "Containerização de serviços e ambientes." },
+          { "name": "Docker Compose", "desc": "Orquestração de múltiplos containers no ambiente local." },
+          { "name": "n8n", "desc": "Motor de automação por trás dos pipelines da Deep Metrics." }
+        ]
+      },
+      {
+        "name": "Testes",
+        "desc": "Qualidade garantida por testes automatizados.",
+        "items": [
+          { "name": "Jest", "desc": "Testes unitários de componentes e funções." }
+        ]
+      },
+      {
+        "name": "Banco de Dados",
+        "desc": "Modelagem e consulta de dados.",
+        "items": [
+          { "name": "SQL", "desc": "Modelagem de dados e consultas para os dashboards." },
+          { "name": "BigQuery", "desc": "Data warehouse onde centralizo e modelo os dados na Deep Metrics." },
+          { "name": "Supabase", "desc": "Backend Postgres da plataforma interna de dados na Deep Metrics." },
+          { "name": "Firestore", "desc": "Banco NoSQL para dados em tempo real." }
+        ]
+      },
+      {
+        "name": "Idiomas",
+        "desc": "Para documentação e comunicação.",
+        "items": [
+          { "name": "Português (nativo)", "desc": "Idioma nativo." },
+          { "name": "Inglês (intermediário)", "desc": "Documentação técnica e comunicação no dia a dia." }
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "ctaTitle": "Vamos construir algo?",
+    "ctaText": "Aberto a oportunidades em times de produto. Escolha o melhor canal:",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "location": "Localização",
+    "locationValue": "São Carlos, SP — Brasil",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "footer": {
+    "rights": "Lucas Silva Mendes",
+    "built": "Construído com Next.js · Inspirado na interface de Final Fantasy XV"
+  }
+}

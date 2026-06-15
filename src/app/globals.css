@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Fluid base size: rem-based text & spacing scale with the viewport,
+       so high-res screens get larger type and roomier layout. */
+    font-size: clamp(15px, 0.34vw + 12.8px, 19px);
+  }
+
+  body {
+    @apply bg-abyss text-frost-soft font-body antialiased;
+    /* deep blue palace wash — light from above, richer navy settling below */
+    background-image:
+      radial-gradient(ellipse 95% 55% at 50% -10%, rgba(120, 150, 200, 0.10), transparent),
+      radial-gradient(ellipse 80% 65% at 50% 120%, rgba(28, 44, 82, 0.45), transparent),
+      linear-gradient(180deg, #0a1124 0%, #0b1530 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    @apply bg-frost/25 text-white;
+  }
+}
+
+@layer components {
+  /* Plain thin rule — pair with <Ornament /> for the decorated version */
+  .frost-divider {
+    @apply h-px w-full bg-frost-line opacity-50;
+  }
+
+  /* Translucent HUD panel — FFXV menu style: blue glass gradient, top bevel,
+     and an inset frame line via ::before. */
+  .hud-panel {
+    @apply relative rounded-sm border border-frost/25 backdrop-blur-md;
+    background-image: linear-gradient(
+      158deg,
+      rgba(74, 100, 150, 0.30) 0%,
+      rgba(34, 50, 88, 0.46) 50%,
+      rgba(20, 32, 60, 0.52) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(214, 223, 235, 0.16),
+      inset 0 0 30px rgba(90, 120, 175, 0.07),
+      0 12px 34px rgba(4, 8, 20, 0.5);
+  }
+  .hud-panel::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(174, 188, 205, 0.12);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  /* Section title — wide tracked uppercase, FF menu header look */
+  .hud-title {
+    @apply font-display uppercase tracking-widest2 text-frost-soft;
+  }
+}
+
+/* Custom scrollbar to match the theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a1124;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(174, 188, 205, 0.18);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(174, 188, 205, 0.32);
+}

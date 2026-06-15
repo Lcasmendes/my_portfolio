@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "name": "Lucas Silva Mendes",
+    "role": "Full-stack Developer",
+    "tagline": "Front-end · Cloud · Data",
+    "siteTitle": "Lucas Mendes — Portfolio",
+    "siteDescription": "Lucas Silva Mendes — full-stack developer building from the interface to the data."
+  },
+  "nav": {
+    "menu": "Menu",
+    "about": "About",
+    "journey": "Journey",
+    "projects": "Projects",
+    "skills": "Skills",
+    "soundOn": "Enable sound",
+    "soundOff": "Disable sound",
+    "open": "Open menu",
+    "close": "Close",
+    "wheelHint": "SELECT A DESTINATION"
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "The person behind the code",
+    "welcome": "Hi, welcome",
+    "welcomeText": "I'm Lucas Silva Mendes — a full-stack developer building from interface to data. Feel free to look around.",
+    "bioKicker": "What I do",
+    "bio": [
+      { "title": "Front-end", "desc": "React, Next.js and TypeScript for complex, responsive interfaces." },
+      { "title": "Cloud & Data", "desc": "Production ETL pipelines on GCP, BigQuery and integration automation." },
+      { "title": "Back-end & Security", "desc": "Microservices, authentication and access control with Keycloak and RBAC." },
+      { "title": "Product mindset", "desc": "From data modeling to the user's screen, end to end." },
+      { "title": "Real experience", "desc": "BIP-Brain (healthcare) and data platforms at Deep Metrics." },
+      { "title": "Education", "desc": "Computer Engineering at UFSCar and a military-school background (EPCAR)." }
+    ],
+    "focusLabel": "Focus areas",
+    "focusHint": "Hover over an area",
+    "attributes": [
+      { "label": "Front-end", "value": 92 },
+      { "label": "Cloud & Infra", "value": 84 },
+      { "label": "Data", "value": 78 },
+      { "label": "Back-end", "value": 68 },
+      { "label": "Security", "value": 72 },
+      { "label": "UX / Design", "value": 76 }
+    ]
+  },
+  "journey": {
+    "title": "Journey",
+    "subtitle": "Where I've been & what I shipped",
+    "current": "Present",
+    "items": [
+      {
+        "title": "Data Engineer (Internship)",
+        "org": "Deep Metrics",
+        "tag": "Experience",
+        "logo": "/institutions/deepmetrics.png",
+        "period": "09/2025 – Present",
+        "lines": [
+          "10 production ETL pipelines centralizing 8 ad & CRM sources into BigQuery.",
+          "Server-side GTM tracking feeding GA4, Meta, Google and Microsoft Ads in parallel — real cross-channel attribution.",
+          "A single Looker Studio dashboard consolidating every acquisition channel for the client.",
+          "Internal platform in React + Supabase + BigQuery to retire the static dashboards."
+        ]
+      },
+      {
+        "title": "Front-end Developer",
+        "org": "BipGroup · UFSCar",
+        "tag": "Experience",
+        "logo": "/institutions/ufscar.png",
+        "period": "03/2024 – 09/2025",
+        "lines": [
+          "30+ screens in React + TypeScript — from two access profiles to the landing and auth flows.",
+          "DICOM and NIFTI medical-image viewer running right in the browser.",
+          "Full API integration: sending, receiving and rendering medical images.",
+          "Prototyped and iterated flows in Figma (V1 → V2) before coding — less rework, better UX.",
+          "FAPESP scholarship in Technical Training for Web Development."
+        ]
+      },
+      {
+        "title": "Teaching Assistant — Intro to Algorithmic Thinking",
+        "org": "UFSCar",
+        "tag": "Academic",
+        "logo": "/institutions/ufscar.png",
+        "period": "During the degree",
+        "lines": [
+          "Helped first-year students with the fundamentals of logic and programming."
+        ]
+      },
+      {
+        "title": "Computer Engineering",
+        "org": "UFSCar",
+        "tag": "Education",
+        "logo": "/institutions/ufscar.png",
+        "period": "08/2021 – 07/2026",
+        "lines": [
+          "A degree bridging software and hardware: algorithms, networks and distributed systems.",
+          "Thesis on automatic generation of authentication and authorization for microservices."
+        ]
+      },
+      {
+        "title": "EPCAR — Air Cadets Preparatory School",
+        "org": "Brazilian Air Force · Barbacena/MG",
+        "tag": "Education",
+        "logo": "/institutions/epcar.svg",
+        "period": "01/2017 – 12/2019",
+        "lines": [
+          "Elite Air Force high school training future officer aviators — exact sciences and discipline cranked to the max."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "What I've built",
+    "items": [
+      {
+        "name": "BIP-Brain",
+        "tag": "Web Platform · BipGroup (UFSCar)",
+        "status": "In production",
+        "description": "A platform that helps radiologists and neurologists diagnose Alzheimer's and Multiple Sclerosis from medical imaging. I led the front-end: 30+ screens, in-browser DICOM/NIFTI visualization and the full API integration.",
+        "image": "/projects/bip-brain.png",
+        "imageAlt": "BIP-Brain platform landing page",
+        "url": "https://www.brain.ufscar.br/pt",
+        "linkLabel": "Visit the platform",
+        "techs": ["React", "TypeScript", "Figma", "DICOM", "NIFTI"]
+      },
+      {
+        "name": "Automatic security for microservices",
+        "tag": "Undergraduate Thesis",
+        "status": "UFSCar · advisor Prof. Daniel Lucredio",
+        "description": "How do you secure microservices without wiring up auth by hand? My thesis extends the js-distributor tool to generate access control (RBAC) with Keycloak automatically, from an initial config — validated on example systems.",
+        "url": "https://repositorio.ufscar.br/items/0818b143-f555-4546-a606-356bbd25a061",
+        "linkLabel": "View in the UFSCar repository",
+        "techs": ["Keycloak", "RBAC", "Microservices", "Code Generation"]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Stack & Competencies",
+    "treeHint": "Hover or tap a node to see where I applied each skill",
+    "prevTab": "Previous area",
+    "nextTab": "Next area",
+    "categories": [
+      {
+        "name": "Front-end",
+        "desc": "Complex, responsive interfaces — from prototype to code.",
+        "items": [
+          { "name": "React", "desc": "Core of the BipGroup interfaces (30+ screens) and the internal data platform at Deep Metrics." },
+          { "name": "Next.js", "desc": "The React framework I use to build interfaces — including this portfolio." },
+          { "name": "TypeScript", "desc": "Static typing on every React project I touch." },
+          { "name": "JavaScript", "desc": "Base language of the front-end and the pipeline automations." },
+          { "name": "CSS (responsive)", "desc": "Layouts that work on any screen." },
+          { "name": "Figma", "desc": "I prototype and iterate flows before writing a line of code." }
+        ]
+      },
+      {
+        "name": "Back-end & Security",
+        "desc": "Microservices, authentication and access control.",
+        "items": [
+          { "name": "Python", "desc": "Automation and data manipulation." },
+          { "name": "Microservices", "desc": "The subject of my thesis: monolith-to-microservices migration." },
+          { "name": "Keycloak", "desc": "Self-hosted identity provider I used to generate auth logic." },
+          { "name": "RBAC", "desc": "Role-Based Access Control, implemented on top of Keycloak." }
+        ]
+      },
+      {
+        "name": "Cloud & Infra",
+        "desc": "Data pipelines and cloud infrastructure.",
+        "items": [
+          { "name": "GCP (Cloud Run, BigQuery)", "desc": "10 production ETL pipelines, data centralized in BigQuery." },
+          { "name": "Docker", "desc": "Containerizing services and environments." },
+          { "name": "Docker Compose", "desc": "Orchestrating multiple containers locally." },
+          { "name": "n8n", "desc": "The automation engine behind the Deep Metrics pipelines." }
+        ]
+      },
+      {
+        "name": "Testing",
+        "desc": "Quality backed by automated tests.",
+        "items": [
+          { "name": "Jest", "desc": "Unit tests for components and functions." }
+        ]
+      },
+      {
+        "name": "Database",
+        "desc": "Data modeling and querying.",
+        "items": [
+          { "name": "SQL", "desc": "Data modeling and queries for the dashboards." },
+          { "name": "BigQuery", "desc": "Data warehouse where I centralize and model data at Deep Metrics." },
+          { "name": "Supabase", "desc": "Postgres backend for the internal data platform at Deep Metrics." },
+          { "name": "Firestore", "desc": "NoSQL database for real-time data." }
+        ]
+      },
+      {
+        "name": "Languages",
+        "desc": "For documentation and communication.",
+        "items": [
+          { "name": "Portuguese (native)", "desc": "Native language." },
+          { "name": "English (intermediate)", "desc": "Technical docs and day-to-day communication." }
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "ctaTitle": "Let's build something?",
+    "ctaText": "Open to opportunities in product teams. Pick the best channel:",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "locationValue": "São Carlos, SP — Brazil",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "footer": {
+    "rights": "Lucas Silva Mendes",
+    "built": "Built with Next.js · Inspired by the Final Fantasy XV interface"
+  }
+}
