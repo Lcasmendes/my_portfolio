@@ -55,10 +55,12 @@
         "logo": "/institutions/deepmetrics.png",
         "period": "09/2025 – Present",
         "lines": [
-          "10 production ETL pipelines centralizing 8 ad & CRM sources into BigQuery.",
-          "Server-side GTM tracking feeding GA4, Meta, Google and Microsoft Ads in parallel — real cross-channel attribution.",
-          "A single Looker Studio dashboard consolidating every acquisition channel for the client.",
-          "Internal platform in React + Supabase + BigQuery to retire the static dashboards."
+          "10 production ETL pipelines (n8n + Cloud Run) connecting 8+ ad & CRM platforms — Meta, Google and Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive and RD Station — into BigQuery.",
+          "Server-side GTM tracking sending conversions in parallel to GA4, Meta, Google and Microsoft Ads — cross-channel attribution and stronger signals for the campaign algorithms.",
+          "BigQuery modeling that maps the full customer journey, from first lead to conversion in the CRM.",
+          "Main Looker Studio dashboard consolidating every acquisition channel into one actionable view.",
+          "Python scripts and advanced SQL for cleaning, enriching and integrating data across systems.",
+          "Internal platform in React + TypeScript (Supabase + BigQuery) to retire the static dashboards."
         ]
       },
       {
@@ -68,11 +70,13 @@
         "logo": "/institutions/ufscar.png",
         "period": "03/2024 – 09/2025",
         "lines": [
-          "30+ screens in React + TypeScript — from two access profiles to the landing and auth flows.",
-          "DICOM and NIFTI medical-image viewer running right in the browser.",
-          "Full API integration: sending, receiving and rendering medical images.",
-          "Prototyped and iterated flows in Figma (V1 → V2) before coding — less rework, better UX.",
-          "FAPESP scholarship in Technical Training for Web Development."
+          "30+ screens in Figma and React + TypeScript for a medical-imaging diagnosis platform.",
+          "Two access profiles (user and administrator), plus the landing page and the auth/sign-up flows.",
+          "Reusable components to render DICOM and NIFTI exams right in the browser.",
+          "Full backend API integration: sending, receiving and rendering medical images.",
+          "Sign-up, login and user-session system.",
+          "Design iterated V1 → V2 before coding — UX validated in prototyping, less rework.",
+          "FAPESP scholarship in Technical Training for Web Development (scientific research at UFSCar)."
         ]
       },
       {

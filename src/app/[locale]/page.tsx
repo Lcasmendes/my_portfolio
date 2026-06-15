@@ -42,11 +42,11 @@ export default async function AboutPage({
           <div className="relative shrink-0 sm:w-2/5">
             <div
               className="relative w-full overflow-hidden rounded-sm border border-frost/30 shadow-glow-strong"
-              style={{ aspectRatio: '3 / 4' }}
+              style={{ aspectRatio: '1 / 1' }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/me/profile.jpg"
+                src="/me/profile-square.jpg"
                 alt={tMeta('name')}
                 className="h-full w-full object-cover object-center"
               />

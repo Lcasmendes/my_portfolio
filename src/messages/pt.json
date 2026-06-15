@@ -55,10 +55,12 @@
         "logo": "/institutions/deepmetrics.png",
         "period": "09/2025 – Atual",
         "lines": [
-          "10 pipelines de ETL em produção centralizando 8 fontes de mídia e CRM no BigQuery.",
-          "Tracking server-side com GTM alimentando GA4, Meta, Google e Microsoft Ads em paralelo — atribuição cross-channel de verdade.",
-          "Dashboard único no Looker Studio consolidando todos os canais de aquisição do cliente.",
-          "Plataforma interna em React + Supabase + BigQuery para aposentar os dashboards estáticos."
+          "10 pipelines de ETL em produção (n8n + Cloud Run) conectando 8+ plataformas de mídia e CRM — Meta, Google e Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive e RD Station — ao BigQuery.",
+          "Tracking server-side com GTM enviando conversões em paralelo para GA4, Meta, Google e Microsoft Ads — atribuição cross-channel e sinais melhores para os algoritmos de campanha.",
+          "Modelagem no BigQuery mapeando a jornada completa do cliente, do primeiro lead até a conversão no CRM.",
+          "Dashboard principal no Looker Studio consolidando todos os canais de aquisição numa visão única e acionável.",
+          "Scripts em Python e SQL avançado para tratamento, enriquecimento e integração de dados entre sistemas.",
+          "Plataforma interna em React + TypeScript (Supabase + BigQuery) para aposentar os dashboards estáticos."
         ]
       },
       {
@@ -68,11 +70,13 @@
         "logo": "/institutions/ufscar.png",
         "period": "03/2024 – 09/2025",
         "lines": [
-          "30+ telas em React + TypeScript — de dois perfis de acesso à landing e à autenticação.",
-          "Visualizador de exames DICOM e NIFTI rodando direto no navegador.",
-          "Integração completa com a API: envio, recebimento e renderização de imagens médicas.",
-          "Protótipos iterados no Figma (V1 → V2) antes de codar — menos retrabalho, melhor UX.",
-          "Bolsa FAPESP de Treinamento Técnico em Desenvolvimento Web."
+          "30+ telas no Figma e em React + TypeScript para uma plataforma de diagnóstico médico por imagem.",
+          "Dois perfis de acesso (usuário e administrador), além da landing page e dos fluxos de autenticação e cadastro.",
+          "Componentes reutilizáveis para renderizar exames DICOM e NIFTI direto no navegador.",
+          "Integração completa com a API backend: envio, recebimento e renderização de imagens médicas.",
+          "Sistema de cadastro, login e sessão de usuário.",
+          "Iteração de design em V1 → V2 antes de codar — UX validada na prototipação, menos retrabalho.",
+          "Bolsa FAPESP de Treinamento Técnico em Desenvolvimento Web (pesquisa científica na UFSCar)."
         ]
       },
       {

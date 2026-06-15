@@ -11,6 +11,25 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const t = useTranslations('nav');
   const { play } = useSound();
   const [open, setOpen] = useState(false);
+  const [atBottom, setAtBottom] = useState(false);
+
+  // Expand the mobile button to a labelled pill once the user reaches the
+  // bottom of the page — makes it obvious where to navigate next.
+  useEffect(() => {
+    const onScroll = () => {
+      const reached =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 90;
+      setAtBottom(reached);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
 
   // Press "M" to toggle the wheel (when not typing in a field).
   useEffect(() => {
@@ -45,14 +64,20 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           onMouseEnter={() => play('hover')}
           aria-label={t('open')}
           aria-haspopup="menu"
-          className="group fixed bottom-5 left-1/2 z-40 flex h-14 w-14 -translate-x-1/2 items-center justify-center gap-2.5 rounded-full border border-frost/40 bg-midnight/85 text-frost-soft shadow-glow-strong backdrop-blur-md transition-colors hover:border-frost hover:text-frost-bright md:bottom-7 md:left-7 md:w-auto md:translate-x-0 md:px-5"
+          className={`group fixed bottom-5 left-1/2 z-40 flex h-14 -translate-x-1/2 items-center justify-center gap-2.5 rounded-full border border-frost/40 bg-midnight/85 text-frost-soft shadow-glow-strong backdrop-blur-md transition-colors hover:border-frost hover:text-frost-bright md:bottom-7 md:left-7 md:w-auto md:translate-x-0 md:px-5 ${
+            atBottom ? 'w-auto px-5' : 'w-14'
+          }`}
         >
           <span className="pointer-events-none absolute inset-0 rounded-full border border-frost/30 animate-pulse-glow" />
           <Aperture
             size={24}
             className="shrink-0 transition-transform duration-500 group-hover:rotate-90"
           />
-          <span className="hidden text-xs uppercase tracking-widest2 md:inline">
+          <span
+            className={`text-xs uppercase tracking-widest2 md:inline ${
+              atBottom ? 'inline' : 'hidden'
+            }`}
+          >
             {t('menu')}
           </span>
           <kbd className="hidden rounded-sm border border-frost/25 px-1 text-[0.6rem] text-frost-dim md:inline">
