@@ -7,6 +7,7 @@ import {
   MapPin,
   Linkedin,
   Github,
+  FileDown,
   type LucideIcon,
 } from 'lucide-react';
 import { useSound } from './sound/SoundProvider';
@@ -18,6 +19,7 @@ const ICONS: Record<string, LucideIcon> = {
   linkedin: Linkedin,
   github: Github,
   location: MapPin,
+  cv: FileDown,
 };
 
 export type ContactIconKey = keyof typeof ICONS;
@@ -28,6 +30,7 @@ interface ContactRowProps {
   value: string;
   href?: string;
   external?: boolean;
+  download?: boolean;
   index: number;
 }
 
@@ -42,6 +45,7 @@ export default function ContactRow({
   value,
   href,
   external,
+  download,
   index,
 }: ContactRowProps) {
   const { play } = useSound();
@@ -78,11 +82,10 @@ export default function ContactRow({
         </span>
       </div>
 
-      {external && (
-        <ExternalLink
-          size={14}
-          className="absolute right-7 top-1/2 z-10 -translate-y-1/2 text-frost-dim opacity-0 transition-opacity group-hover:opacity-100"
-        />
+      {(external || download) && (
+        <span className="absolute right-7 top-1/2 z-10 -translate-y-1/2 text-frost-dim opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-accent-bright">
+          {download ? <FileDown size={14} /> : <ExternalLink size={14} />}
+        </span>
       )}
     </>
   );
@@ -104,6 +107,7 @@ export default function ContactRow({
       href={href}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
+      download={download ? '' : undefined}
       aria-label={`${label}: ${value}`}
       onMouseEnter={() => play('hover')}
       onClick={() => play('select')}

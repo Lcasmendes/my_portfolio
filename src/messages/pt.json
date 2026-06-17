@@ -4,7 +4,10 @@
     "role": "Desenvolvedor Full-stack",
     "tagline": "Front-end · Cloud · Dados",
     "siteTitle": "Lucas Mendes — Portfólio",
-    "siteDescription": "Lucas Silva Mendes — desenvolvedor full-stack que constrói da interface ao dado."
+    "homeTitle": "Lucas Silva Mendes — Desenvolvedor Full-stack em São Carlos e Cataguases",
+    "siteDescription": "Lucas Silva Mendes — desenvolvedor full-stack (React, Next.js, Node.js) e engenheiro de dados em São Carlos (SP) e Cataguases (MG). Construo da interface ao dado: front-end, cloud, pipelines e back-end.",
+    "ogAlt": "Lucas Silva Mendes — Desenvolvedor Full-stack",
+    "keywords": "Lucas Silva Mendes, desenvolvedor full-stack, desenvolvedor São Carlos, desenvolvedor Cataguases, programador São Carlos SP, programador Cataguases MG, engenheiro de software, engenheiro de dados, desenvolvedor React, Next.js, Node.js, desenvolvedor web Minas Gerais, desenvolvedor web São Paulo, freelancer desenvolvedor"
   },
   "nav": {
     "menu": "Menu",
@@ -41,17 +44,18 @@
     "focusLabel": "Áreas de atuação",
     "focusHint": "Passe o mouse sobre uma área",
     "attributes": [
-      { "label": "Front-end", "value": 92 },
-      { "label": "Cloud & Infra", "value": 84 },
-      { "label": "Dados", "value": 78 },
-      { "label": "Back-end", "value": 68 },
-      { "label": "Segurança", "value": 72 },
-      { "label": "UX / Design", "value": 76 }
+      { "label": "Front-end", "value": 92, "techs": ["React", "Next.js", "TypeScript", "JavaScript", "CSS"] },
+      { "label": "Cloud & Infra", "value": 84, "techs": ["GCP", "Cloud Run", "Docker", "n8n"] },
+      { "label": "Dados", "value": 78, "techs": ["SQL", "BigQuery", "Supabase", "Firestore"] },
+      { "label": "Back-end", "value": 68, "techs": ["Node.js", "Express", "Python", "Microsserviços"] },
+      { "label": "Segurança", "value": 72, "techs": ["Keycloak", "RBAC", "Autenticação"] },
+      { "label": "UX / Design", "value": 76, "techs": ["Figma", "Prototipação", "UI Responsiva"] }
     ]
   },
   "journey": {
     "title": "Trajetória",
     "subtitle": "Onde estive e o que entreguei",
+    "metaDescription": "Trajetória de Lucas Silva Mendes: engenharia de dados e desenvolvimento full-stack na Deep Metrics, front-end no BIP Group (UFSCar) e formação em Engenharia da Computação.",
     "current": "Atual",
     "items": [
       {
@@ -126,6 +130,7 @@
   "projects": {
     "title": "Projetos",
     "subtitle": "O que eu construí",
+    "metaDescription": "Projetos de Lucas Silva Mendes: a plataforma médica BIP-Brain (React/TypeScript) e o TCC de geração automática de autenticação e autorização para microsserviços.",
     "items": [
       {
         "name": "BIP-Brain",
@@ -152,6 +157,7 @@
   "skills": {
     "title": "Habilidades",
     "subtitle": "Stack & Competências",
+    "metaDescription": "Stack de Lucas Silva Mendes: React, Next.js, TypeScript, Node.js, GCP/BigQuery, Docker, agentes de IA e mais — front-end, cloud, dados e back-end.",
     "treeHint": "Passe o mouse ou toque em um nó para ver onde apliquei cada habilidade",
     "prevTab": "Área anterior",
     "nextTab": "Próxima área",
@@ -220,6 +226,8 @@
   "contact": {
     "ctaTitle": "Vamos construir algo?",
     "ctaText": "Aberto a oportunidades em times de produto. Escolha o melhor canal:",
+    "cv": "Currículo (PDF)",
+    "cvValue": "Baixar versão completa",
     "email": "E-mail",
     "phone": "Telefone",
     "location": "Localização",

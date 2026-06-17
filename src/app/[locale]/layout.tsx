@@ -7,6 +7,7 @@ import { routing } from '@/i18n/routing';
 import AppShell from '@/components/AppShell';
 import Background from '@/components/Background';
 import { SoundProvider } from '@/components/sound/SoundProvider';
+import { siteUrl, SITE_NAME, author, personJsonLd } from '@/data/site';
 import '../globals.css';
 
 const display = Jost({
@@ -34,8 +35,29 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
   return {
-    title: t('siteTitle'),
+    metadataBase: new URL(siteUrl),
+    title: { default: t('homeTitle'), template: `%s — ${SITE_NAME}` },
     description: t('siteDescription'),
+    keywords: t('keywords')
+      .split(',')
+      .map((k) => k.trim()),
+    applicationName: SITE_NAME,
+    authors: [{ name: author.name, url: siteUrl }],
+    creator: author.name,
+    publisher: author.name,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+        'max-video-preview': -1,
+      },
+    },
+    twitter: { card: 'summary_large_image', creator: '@lcasm' },
+    formatDetection: { telephone: false },
   };
 }
 
@@ -54,10 +76,20 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const tMeta = await getTranslations({ locale, namespace: 'meta' });
+  const jsonLd = personJsonLd(tMeta('role'));
 
   return (
-    <html lang={locale} className={`${display.variable} ${body.variable}`}>
+    <html
+      lang={locale === 'pt' ? 'pt-BR' : locale}
+      className={`${display.variable} ${body.variable}`}
+    >
       <body>
+        <script
+          type="application/ld+json"
+          // Person schema for rich results & local (São Carlos / Cataguases) relevance
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <NextIntlClientProvider messages={messages}>
           <SoundProvider>
             <Background />

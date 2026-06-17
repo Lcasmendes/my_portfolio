@@ -1,6 +1,23 @@
+import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import SectionHeader from '@/components/SectionHeader';
 import SkillTabs, { type SkillCategory } from '@/components/SkillTabs';
+import { pageMetadata } from '@/data/site';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'skills' });
+  return pageMetadata({
+    locale,
+    path: '/skills',
+    title: t('title'),
+    description: t('metaDescription'),
+  });
+}
 
 export default async function SkillsPage({
   params,

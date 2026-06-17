@@ -1,8 +1,25 @@
+import type { Metadata } from 'next';
 import { ExternalLink, ShieldCheck, ArrowUpRight } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Tag from '@/components/Tag';
 import ContactCTA from '@/components/ContactCTA';
 import { Flourish } from '@/components/Ornament';
+import { pageMetadata } from '@/data/site';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'projects' });
+  return pageMetadata({
+    locale,
+    path: '/projects',
+    title: t('title'),
+    description: t('metaDescription'),
+  });
+}
 
 interface ProjectItem {
   name: string;

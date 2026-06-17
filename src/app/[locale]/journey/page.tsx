@@ -1,6 +1,23 @@
+import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import SectionHeader from '@/components/SectionHeader';
 import QuestLog, { type JourneyItem } from '@/components/QuestLog';
+import { pageMetadata } from '@/data/site';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'journey' });
+  return pageMetadata({
+    locale,
+    path: '/journey',
+    title: t('title'),
+    description: t('metaDescription'),
+  });
+}
 
 export default async function JourneyPage({
   params,

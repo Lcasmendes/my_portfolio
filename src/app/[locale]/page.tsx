@@ -1,8 +1,19 @@
+import type { Metadata } from 'next';
 import { Check } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import FocusRadar, { type Attribute } from '@/components/FocusRadar';
 import ContactCTA from '@/components/ContactCTA';
 import { Flourish } from '@/components/Ornament';
+import { pageMetadata } from '@/data/site';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata({ locale, path: '' });
+}
 
 export default async function AboutPage({
   params,

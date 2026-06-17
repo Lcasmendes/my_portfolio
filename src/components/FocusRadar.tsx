@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 export interface Attribute {
   label: string;
   value: number; // 0-100, relative emphasis across the profile
+  techs?: string[];
 }
 
 interface FocusRadarProps {
@@ -159,9 +160,9 @@ export default function FocusRadar({ hint, attributes }: FocusRadarProps) {
           </svg>
         </div>
 
-        {/* Attribute bars */}
+        {/* Attribute bars + stack chips */}
         <div>
-          <div className="space-y-2.5">
+          <div className="space-y-4">
             {attributes.map((a, i) => {
               const active = hovered === i;
               return (
@@ -186,6 +187,22 @@ export default function FocusRadar({ hint, attributes }: FocusRadarProps) {
                       transition={{ duration: 0.8, delay: 0.1 + i * 0.08, ease: 'easeOut' }}
                     />
                   </div>
+                  {a.techs && a.techs.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {a.techs.map((tech) => (
+                        <span
+                          key={tech}
+                          className={`rounded-sm border px-2 py-0.5 text-[0.65rem] tracking-wide transition-colors ${
+                            active
+                              ? 'border-accent/50 bg-accent/10 text-accent-bright'
+                              : 'border-frost/20 bg-frost/5 text-frost-soft/80'
+                          }`}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               );
             })}

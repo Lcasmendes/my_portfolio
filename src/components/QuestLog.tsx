@@ -68,13 +68,14 @@ export default function QuestLog({ items, currentLabel }: QuestLogProps) {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.06 * i }}
-                className={`hud-panel flex overflow-hidden transition-colors ${
+                className={`hud-panel flex flex-col overflow-hidden transition-colors sm:flex-row ${
                   isOpen ? 'border-frost/40' : ''
                 }`}
               >
                 {/* ---- Photo column — covers ~1/3 of the card ---- */}
                 {item.photo && (
-                  <div className="relative w-1/3 shrink-0 self-stretch overflow-hidden">
+                  /* Full-width banner on mobile (top), 1/3 side column on desktop */
+                  <div className="relative h-36 w-full shrink-0 overflow-hidden sm:h-auto sm:w-1/3 sm:self-stretch">
                     {item.photoLogo ? (
                       <div
                         className="flex h-full w-full items-center justify-center p-4"
@@ -87,7 +88,7 @@ export default function QuestLog({ items, currentLabel }: QuestLogProps) {
                         <img
                           src={item.photo}
                           alt={item.org}
-                          className="max-h-[70%] max-w-[80%] object-contain"
+                          className="max-h-[70%] max-w-[60%] object-contain sm:max-w-[80%]"
                         />
                       </div>
                     ) : (
@@ -103,11 +104,11 @@ export default function QuestLog({ items, currentLabel }: QuestLogProps) {
                         <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-abyss/55 via-transparent to-transparent" />
                       </>
                     )}
-                    {/* right-edge fade to blend into the card body */}
-                    <span className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-r from-transparent to-abyss/70" />
-                    {/* live accent rail on the current entry */}
+                    {/* edge fade into the card body — bottom on mobile, right on desktop */}
+                    <span className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-abyss/70 to-transparent sm:inset-y-0 sm:left-auto sm:right-0 sm:h-auto sm:w-10 sm:bg-gradient-to-r sm:from-transparent sm:to-abyss/70" />
+                    {/* live accent rail on the current entry — top on mobile, left on desktop */}
                     {isCurrent && (
-                      <span className="pointer-events-none absolute inset-y-0 left-0 w-0.5 bg-accent shadow-glow-accent" />
+                      <span className="pointer-events-none absolute left-0 top-0 h-0.5 w-full bg-accent shadow-glow-accent sm:h-full sm:w-0.5" />
                     )}
                   </div>
                 )}
