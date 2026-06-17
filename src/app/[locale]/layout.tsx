@@ -58,6 +58,9 @@ export async function generateMetadata({
     },
     twitter: { card: 'summary_large_image', creator: '@lcasm' },
     formatDetection: { telephone: false },
+    verification: {
+      google: 'uNs80-RcA8Pk9VnX45ySkXT_qjNYHqPpRZpC36ijT8E',
+    },
   };
 }
 
