@@ -4,7 +4,10 @@ import type { Metadata } from 'next';
 // NEXT_PUBLIC_SITE_URL in the deploy environment if a custom domain is added.
 export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ?? 'https://lucassmdev.vercel.app'
-).replace(/\/+$/, '');
+)
+  .trim()
+  .replace(/\s+/g, '') // guard against stray whitespace in the env var
+  .replace(/\/+$/, '');
 
 export const SITE_NAME = 'Lucas Mendes';
 
