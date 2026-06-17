@@ -5,7 +5,7 @@
     "tagline": "Front-end · Cloud · Dados",
     "siteTitle": "Lucas Mendes — Portfólio",
     "homeTitle": "Lucas Silva Mendes — Desenvolvedor Full-stack em São Carlos e Cataguases",
-    "siteDescription": "Lucas Silva Mendes — desenvolvedor full-stack (React, Next.js, Node.js) e engenheiro de dados em São Carlos (SP) e Cataguases (MG). Construo da interface ao dado: front-end, cloud, pipelines e back-end.",
+    "siteDescription": "Lucas Silva Mendes, desenvolvedor full-stack (React, Next.js, Node.js) e engenheiro de dados em São Carlos (SP) e Cataguases (MG). Construo da interface ao dado: front-end, cloud, pipelines e back-end.",
     "ogAlt": "Lucas Silva Mendes — Desenvolvedor Full-stack",
     "keywords": "Lucas Silva Mendes, desenvolvedor full-stack, desenvolvedor São Carlos, desenvolvedor Cataguases, programador São Carlos SP, programador Cataguases MG, engenheiro de software, engenheiro de dados, desenvolvedor React, Next.js, Node.js, desenvolvedor web Minas Gerais, desenvolvedor web São Paulo, freelancer desenvolvedor"
   },
@@ -25,7 +25,7 @@
     "title": "Sobre",
     "subtitle": "Quem está por trás do código",
     "welcome": "Olá, seja bem-vindo",
-    "welcomeText": "Sou Lucas Silva Mendes — desenvolvedor full-stack que constrói da interface ao dado. Fique à vontade para explorar.",
+    "welcomeText": "Sou Lucas Silva Mendes, desenvolvedor full-stack que constrói da interface ao dado. Fique à vontade para explorar.",
     "bioKicker": "O que eu faço",
     "bio": [
       { "title": "Front-end", "desc": "React, Next.js e TypeScript para interfaces complexas e responsivas." },
@@ -67,8 +67,8 @@
         "photoLogo": true,
         "period": "09/2025 – Atual",
         "lines": [
-          "10 pipelines de ETL em produção (n8n + Cloud Run) conectando 8+ plataformas de mídia e CRM — Meta, Google e Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive e RD Station — ao BigQuery.",
-          "Tracking server-side com GTM enviando conversões em paralelo para GA4, Meta, Google e Microsoft Ads — atribuição cross-channel e sinais melhores para os algoritmos de campanha.",
+          "10 pipelines de ETL em produção (n8n + Cloud Run) conectando 8+ plataformas de mídia e CRM (Meta, Google e Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive e RD Station) ao BigQuery.",
+          "Tracking server-side com GTM enviando conversões em paralelo para GA4, Meta, Google e Microsoft Ads, com atribuição cross-channel e sinais melhores para os algoritmos de campanha.",
           "Modelagem no BigQuery mapeando a jornada completa do cliente, do primeiro lead até a conversão no CRM.",
           "Dashboards de marketing em JavaScript, HTML e CSS com Vite e Chart.js, substituindo os dashboards estáticos por uma interface dinâmica.",
           "Back-end em Node/Express servindo os dados do BigQuery e do Supabase, com cache para performance.",
@@ -87,7 +87,7 @@
           "Dois perfis de acesso (usuário e administrador), além da landing page e dos fluxos de autenticação e cadastro.",
           "Integração completa com a API backend para envio e recebimento de dados da plataforma.",
           "Sistema de cadastro, login e sessão de usuário.",
-          "Iteração de design em V1 → V2 antes de codar — UX validada na prototipação, menos retrabalho.",
+          "Iteração de design em V1 → V2 antes de codar, com UX validada na prototipação e menos retrabalho.",
           "Bolsa FAPESP de Treinamento Técnico em Desenvolvimento Web (pesquisa científica na UFSCar)."
         ]
       },
@@ -122,7 +122,7 @@
         "photo": "/institutions/epcar.jpg",
         "period": "01/2017 – 12/2019",
         "lines": [
-          "Ensino médio de excelência da FAB, voltado a formar futuros oficiais aviadores — exatas e disciplina no limite."
+          "Ensino médio de excelência da FAB, voltado a formar futuros oficiais aviadores, com exatas e disciplina no limite."
         ]
       }
     ]
@@ -147,7 +147,7 @@
         "name": "Segurança automática para microsserviços",
         "tag": "Trabalho de Conclusão de Curso",
         "status": "UFSCar · orientação Prof. Daniel Lucredio",
-        "description": "Como deixar microsserviços seguros sem configurar autenticação na mão? Meu TCC estende a ferramenta js-distributor para gerar controle de acesso (RBAC) com Keycloak automaticamente, a partir de uma configuração inicial — validado em sistemas de exemplo.",
+        "description": "Como deixar microsserviços seguros sem configurar autenticação na mão? Meu TCC estende a ferramenta js-distributor para gerar controle de acesso (RBAC) com Keycloak automaticamente, a partir de uma configuração inicial, validado em sistemas de exemplo.",
         "url": "https://repositorio.ufscar.br/items/0818b143-f555-4546-a606-356bbd25a061",
         "linkLabel": "Ver no repositório da UFSCar",
         "techs": ["Keycloak", "RBAC", "Microsserviços", "Geração de Código"]
@@ -157,7 +157,7 @@
   "skills": {
     "title": "Habilidades",
     "subtitle": "Stack & Competências",
-    "metaDescription": "Stack de Lucas Silva Mendes: React, Next.js, TypeScript, Node.js, GCP/BigQuery, Docker, agentes de IA e mais — front-end, cloud, dados e back-end.",
+    "metaDescription": "Stack de Lucas Silva Mendes em front-end, cloud, dados e back-end: React, Next.js, TypeScript, Node.js, GCP/BigQuery, Docker, agentes de IA e mais.",
     "treeHint": "Passe o mouse ou toque em um nó para ver onde apliquei cada habilidade",
     "prevTab": "Área anterior",
     "nextTab": "Próxima área",
@@ -167,7 +167,7 @@
         "desc": "Interfaces complexas e responsivas, do protótipo ao código.",
         "items": [
           { "name": "React", "desc": "Base das interfaces do BipGroup (30+ telas) e da plataforma interna de dados na Deep Metrics." },
-          { "name": "Next.js", "desc": "Framework React que uso para construir interfaces — inclusive este portfólio." },
+          { "name": "Next.js", "desc": "Framework React que uso para construir interfaces, inclusive este portfólio." },
           { "name": "TypeScript", "desc": "Tipagem estática em todo projeto React que toco." },
           { "name": "JavaScript", "desc": "Linguagem base do front-end e das automações de pipeline." },
           { "name": "CSS (responsivo)", "desc": "Layouts que funcionam em qualquer tela." },
@@ -231,7 +231,7 @@
     "email": "E-mail",
     "phone": "Telefone",
     "location": "Localização",
-    "locationValue": "São Carlos, SP — Brasil",
+    "locationValue": "São Carlos, SP, Brasil",
     "linkedin": "LinkedIn",
     "github": "GitHub"
   },

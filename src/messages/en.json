@@ -5,7 +5,7 @@
     "tagline": "Front-end · Cloud · Data",
     "siteTitle": "Lucas Mendes — Portfolio",
     "homeTitle": "Lucas Silva Mendes — Full-stack Developer in São Carlos & Cataguases, Brazil",
-    "siteDescription": "Lucas Silva Mendes — full-stack developer (React, Next.js, Node.js) and data engineer based in São Carlos (SP) and Cataguases (MG), Brazil. Building from the interface to the data: front-end, cloud, pipelines and back-end.",
+    "siteDescription": "Lucas Silva Mendes, full-stack developer (React, Next.js, Node.js) and data engineer based in São Carlos (SP) and Cataguases (MG), Brazil. Building from the interface to the data: front-end, cloud, pipelines and back-end.",
     "ogAlt": "Lucas Silva Mendes — Full-stack Developer",
     "keywords": "Lucas Silva Mendes, full-stack developer, developer São Carlos, developer Cataguases, software engineer Brazil, data engineer, React developer, Next.js, Node.js, web developer São Paulo, web developer Minas Gerais, freelance developer Brazil"
   },
@@ -25,7 +25,7 @@
     "title": "About",
     "subtitle": "The person behind the code",
     "welcome": "Hi, welcome",
-    "welcomeText": "I'm Lucas Silva Mendes — a full-stack developer building from interface to data. Feel free to look around.",
+    "welcomeText": "I'm Lucas Silva Mendes, a full-stack developer building from interface to data. Feel free to look around.",
     "bioKicker": "What I do",
     "bio": [
       { "title": "Front-end", "desc": "React, Next.js and TypeScript for complex, responsive interfaces." },
@@ -67,8 +67,8 @@
         "photoLogo": true,
         "period": "09/2025 – Present",
         "lines": [
-          "10 production ETL pipelines (n8n + Cloud Run) connecting 8+ ad & CRM platforms — Meta, Google and Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive and RD Station — into BigQuery.",
-          "Server-side GTM tracking sending conversions in parallel to GA4, Meta, Google and Microsoft Ads — cross-channel attribution and stronger signals for the campaign algorithms.",
+          "10 production ETL pipelines (n8n + Cloud Run) connecting 8+ ad & CRM platforms (Meta, Google and Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive and RD Station) into BigQuery.",
+          "Server-side GTM tracking sending conversions in parallel to GA4, Meta, Google and Microsoft Ads, with cross-channel attribution and stronger signals for the campaign algorithms.",
           "BigQuery modeling that maps the full customer journey, from first lead to conversion in the CRM.",
           "Marketing dashboards in JavaScript, HTML and CSS with Vite and Chart.js, replacing the static dashboards with a dynamic interface.",
           "Node/Express backend serving the data from BigQuery and Supabase, with caching for performance.",
@@ -87,7 +87,7 @@
           "Two access profiles (user and administrator), plus the landing page and the auth/sign-up flows.",
           "Full backend API integration for sending and receiving platform data.",
           "Sign-up, login and user-session system.",
-          "Design iterated V1 → V2 before coding — UX validated in prototyping, less rework.",
+          "Design iterated V1 → V2 before coding, with UX validated in prototyping and less rework.",
           "FAPESP scholarship in Technical Training for Web Development (scientific research at UFSCar)."
         ]
       },
@@ -122,7 +122,7 @@
         "photo": "/institutions/epcar.jpg",
         "period": "01/2017 – 12/2019",
         "lines": [
-          "Elite Air Force high school training future officer aviators — exact sciences and discipline cranked to the max."
+          "Elite Air Force high school training future officer aviators, with exact sciences and discipline cranked to the max."
         ]
       }
     ]
@@ -147,7 +147,7 @@
         "name": "Automatic security for microservices",
         "tag": "Undergraduate Thesis",
         "status": "UFSCar · advisor Prof. Daniel Lucredio",
-        "description": "How do you secure microservices without wiring up auth by hand? My thesis extends the js-distributor tool to generate access control (RBAC) with Keycloak automatically, from an initial config — validated on example systems.",
+        "description": "How do you secure microservices without wiring up auth by hand? My thesis extends the js-distributor tool to generate access control (RBAC) with Keycloak automatically, from an initial config, validated on example systems.",
         "url": "https://repositorio.ufscar.br/items/0818b143-f555-4546-a606-356bbd25a061",
         "linkLabel": "View in the UFSCar repository",
         "techs": ["Keycloak", "RBAC", "Microservices", "Code Generation"]
@@ -157,17 +157,17 @@
   "skills": {
     "title": "Skills",
     "subtitle": "Stack & Competencies",
-    "metaDescription": "Lucas Silva Mendes' stack: React, Next.js, TypeScript, Node.js, GCP/BigQuery, Docker, AI agents and more — front-end, cloud, data and back-end.",
+    "metaDescription": "Lucas Silva Mendes' stack across front-end, cloud, data and back-end: React, Next.js, TypeScript, Node.js, GCP/BigQuery, Docker, AI agents and more.",
     "treeHint": "Hover or tap a node to see where I applied each skill",
     "prevTab": "Previous area",
     "nextTab": "Next area",
     "categories": [
       {
         "name": "Front-end",
-        "desc": "Complex, responsive interfaces — from prototype to code.",
+        "desc": "Complex, responsive interfaces, from prototype to code.",
         "items": [
           { "name": "React", "desc": "Core of the BipGroup interfaces (30+ screens) and the internal data platform at Deep Metrics." },
-          { "name": "Next.js", "desc": "The React framework I use to build interfaces — including this portfolio." },
+          { "name": "Next.js", "desc": "The React framework I use to build interfaces, including this portfolio." },
           { "name": "TypeScript", "desc": "Static typing on every React project I touch." },
           { "name": "JavaScript", "desc": "Base language of the front-end and the pipeline automations." },
           { "name": "CSS (responsive)", "desc": "Layouts that work on any screen." },
@@ -231,7 +231,7 @@
     "email": "Email",
     "phone": "Phone",
     "location": "Location",
-    "locationValue": "São Carlos, SP — Brazil",
+    "locationValue": "São Carlos, SP, Brazil",
     "linkedin": "LinkedIn",
     "github": "GitHub"
   },

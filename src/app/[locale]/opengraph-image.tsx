@@ -65,7 +65,7 @@ export default async function OgImage() {
               transform: 'rotate(45deg)',
             }}
           />
-          São Carlos, SP · Cataguases, MG — Brasil
+          São Carlos, SP · Cataguases, MG, Brasil
         </div>
       </div>
     ),
