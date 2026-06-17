@@ -49,7 +49,7 @@ export default function Background() {
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       {/* soft, desaturated light pools with gentle parallax */}
       <div
-        className="absolute -left-40 top-[12%] h-[32rem] w-[32rem] rounded-full bg-frost/[0.06] blur-3xl animate-pulse-glow transition-transform duration-700 ease-out"
+        className="absolute -left-40 top-[12%] h-[32rem] w-[32rem] rounded-full bg-accent/[0.06] blur-3xl animate-pulse-glow transition-transform duration-700 ease-out"
         style={{ transform: `translate(${offset.x * 14}px, ${offset.y * 14}px)` }}
       />
       <div
@@ -68,7 +68,9 @@ export default function Background() {
         {DUST.map((p, i) => (
           <span
             key={i}
-            className="absolute rounded-full bg-frost/40 animate-particle"
+            className={`absolute rounded-full animate-particle ${
+              i % 3 === 0 ? 'bg-accent/45' : 'bg-frost/40'
+            }`}
             style={{
               left: `${p.x}%`,
               top: `${p.y}%`,

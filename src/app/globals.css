@@ -12,8 +12,11 @@
 
   body {
     @apply bg-abyss text-frost-soft font-body antialiased;
-    /* deep blue palace wash — light from above, richer navy settling below */
+    /* deep blue palace wash — light from above, richer navy settling below,
+       with a faint cyan aura bleeding in from the top corners */
     background-image:
+      radial-gradient(ellipse 60% 40% at 12% -8%, rgba(79, 195, 214, 0.10), transparent),
+      radial-gradient(ellipse 60% 40% at 88% -8%, rgba(79, 195, 214, 0.08), transparent),
       radial-gradient(ellipse 95% 55% at 50% -10%, rgba(120, 150, 200, 0.10), transparent),
       radial-gradient(ellipse 80% 65% at 50% 120%, rgba(28, 44, 82, 0.45), transparent),
       linear-gradient(180deg, #0a1124 0%, #0b1530 100%);
@@ -22,7 +25,7 @@
   }
 
   ::selection {
-    @apply bg-frost/25 text-white;
+    @apply bg-accent/30 text-white;
   }
 }
 
@@ -75,5 +78,5 @@
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(174, 188, 205, 0.32);
+  background: rgba(79, 195, 214, 0.45);
 }

@@ -7,7 +7,7 @@ import {
   Code2,
   ShieldCheck,
   Cloud,
-  FlaskConical,
+  Bot,
   Database,
   Languages,
   Sparkles,
@@ -38,7 +38,7 @@ const TAB_ICONS: LucideIcon[] = [
   Code2, // Front-end
   ShieldCheck, // Back-end & Security
   Cloud, // Cloud & Infra
-  FlaskConical, // Testing
+  Bot, // Agents & AI
   Database, // Database
   Languages, // Languages
 ];
@@ -227,7 +227,7 @@ export default function SkillTabs({
                 {active && (
                   <motion.span
                     layoutId="skillTabActive"
-                    className="absolute inset-0 rounded-sm border border-frost/40 bg-frost/10 shadow-glow"
+                    className="absolute inset-0 rounded-sm border border-accent/50 bg-accent/10 shadow-glow-accent"
                     transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                   />
                 )}
@@ -241,7 +241,7 @@ export default function SkillTabs({
                 {active && (
                   <motion.span
                     layoutId="skillTabPointer"
-                    className="absolute -bottom-[10px] left-1/2 z-10 h-1.5 w-1.5 -translate-x-1/2 rotate-45 bg-frost shadow-glow-strong"
+                    className="absolute -bottom-[10px] left-1/2 z-10 h-1.5 w-1.5 -translate-x-1/2 rotate-45 bg-accent shadow-glow-accent-strong"
                   />
                 )}
               </button>
@@ -362,15 +362,15 @@ export default function SkillTabs({
                   <path
                     d={d}
                     fill="none"
-                    stroke="#aebccd"
+                    stroke={active ? '#4fc3d6' : '#aebccd'}
                     strokeWidth={active ? 7 : 4}
-                    opacity={active ? 0.5 : 0.18}
+                    opacity={active ? 0.6 : 0.18}
                     filter="url(#soft2)"
                   />
                   <motion.path
                     d={d}
                     fill="none"
-                    stroke={active ? '#eef1f6' : '#aebccd'}
+                    stroke={active ? '#7ee0ee' : '#aebccd'}
                     strokeWidth={active ? 2.4 : 1.4}
                     strokeLinecap="round"
                     initial={{ pathLength: 0, opacity: 0 }}
@@ -438,10 +438,10 @@ export default function SkillTabs({
                     {active && (
                       <motion.circle
                         r={22}
-                        fill="#aebccd"
+                        fill="#4fc3d6"
                         filter="url(#soft2)"
                         style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
-                        animate={{ opacity: [0.25, 0.6, 0.25], scale: [0.95, 1.15, 0.95] }}
+                        animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.95, 1.15, 0.95] }}
                         transition={{ duration: 2, repeat: Infinity }}
                       />
                     )}
@@ -449,12 +449,12 @@ export default function SkillTabs({
                     <circle
                       r={15}
                       fill="none"
-                      stroke={active ? '#eef1f6' : '#aebccd'}
+                      stroke={active ? '#7ee0ee' : '#aebccd'}
                       strokeWidth={1.5}
                       opacity={active ? 1 : 0.7}
                     />
                     <circle r={8} fill="url(#coreFill2)" opacity={active ? 1 : 0.85} />
-                    <circle r={2.6} fill="#ffffff" />
+                    <circle r={2.6} fill={active ? '#7ee0ee' : '#ffffff'} />
                     {layout.vertical ? (
                       <text
                         x={0}

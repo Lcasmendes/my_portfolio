@@ -32,6 +32,12 @@
       { "title": "Real experience", "desc": "BIP-Brain (healthcare) and data platforms at Deep Metrics." },
       { "title": "Education", "desc": "Computer Engineering at UFSCar and a military-school background (EPCAR)." }
     ],
+    "stats": [
+      { "value": "10", "label": "Production ETL pipelines" },
+      { "value": "30+", "label": "Screens in React + Figma" },
+      { "value": "8+", "label": "Platforms integrated" },
+      { "value": "2026", "label": "Computer Engineering · UFSCar" }
+    ],
     "focusLabel": "Focus areas",
     "focusHint": "Hover over an area",
     "attributes": [
@@ -53,6 +59,8 @@
         "org": "Deep Metrics",
         "tag": "Experience",
         "logo": "/institutions/deepmetrics.png",
+        "photo": "/institutions/deepmetrics.png",
+        "photoLogo": true,
         "period": "09/2025 – Present",
         "lines": [
           "10 production ETL pipelines (n8n + Cloud Run) connecting 8+ ad & CRM platforms — Meta, Google and Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive and RD Station — into BigQuery.",
@@ -68,6 +76,7 @@
         "org": "BipGroup · UFSCar",
         "tag": "Experience",
         "logo": "/institutions/ufscar.png",
+        "photo": "/projects/bip-brain.png",
         "period": "03/2024 – 09/2025",
         "lines": [
           "30+ screens in Figma and React + TypeScript for a medical-imaging diagnosis platform.",
@@ -83,6 +92,7 @@
         "org": "UFSCar",
         "tag": "Academic",
         "logo": "/institutions/ufscar.png",
+        "photo": "/institutions/dc_ufscarjpg.jpg",
         "period": "During the degree",
         "lines": [
           "Helped first-year students with the fundamentals of logic and programming."
@@ -93,6 +103,7 @@
         "org": "UFSCar",
         "tag": "Education",
         "logo": "/institutions/ufscar.png",
+        "photo": "/institutions/ufscar.jpg",
         "period": "08/2021 – 07/2026",
         "lines": [
           "A degree bridging software and hardware: algorithms, networks and distributed systems.",
@@ -104,6 +115,7 @@
         "org": "Brazilian Air Force · Barbacena/MG",
         "tag": "Education",
         "logo": "/institutions/epcar.svg",
+        "photo": "/institutions/epcar.jpg",
         "period": "01/2017 – 12/2019",
         "lines": [
           "Elite Air Force high school training future officer aviators — exact sciences and discipline cranked to the max."
@@ -178,10 +190,11 @@
         ]
       },
       {
-        "name": "Testing",
-        "desc": "Quality backed by automated tests.",
+        "name": "Agents & AI",
+        "desc": "Intelligent automation and AI applied to development.",
         "items": [
-          { "name": "Jest", "desc": "Unit tests for components and functions." }
+          { "name": "Agent Development", "desc": "At Multimachine (Deep Metrics' sister company), building automated customer-service agents." },
+          { "name": "Claude Code", "desc": "Using AI as a copilot in day-to-day development." }
         ]
       },
       {

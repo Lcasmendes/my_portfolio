@@ -64,11 +64,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           onMouseEnter={() => play('hover')}
           aria-label={t('open')}
           aria-haspopup="menu"
-          className={`group fixed bottom-5 left-1/2 z-40 flex h-14 -translate-x-1/2 items-center justify-center gap-2.5 rounded-full border border-frost/40 bg-midnight/85 text-frost-soft shadow-glow-strong backdrop-blur-md transition-colors hover:border-frost hover:text-frost-bright md:bottom-7 md:left-7 md:w-auto md:translate-x-0 md:px-5 ${
+          className={`group fixed bottom-5 left-1/2 z-40 flex h-14 -translate-x-1/2 items-center justify-center gap-2.5 rounded-full border border-frost/40 bg-midnight/85 text-frost-soft shadow-glow-strong backdrop-blur-md transition-colors hover:border-accent hover:text-accent-bright hover:shadow-glow-accent md:bottom-7 md:left-7 md:w-auto md:translate-x-0 md:px-5 ${
             atBottom ? 'w-auto px-5' : 'w-14'
           }`}
         >
-          <span className="pointer-events-none absolute inset-0 rounded-full border border-frost/30 animate-pulse-glow" />
+          <span className="pointer-events-none absolute inset-0 rounded-full border border-accent/40 animate-pulse-glow" />
           <Aperture
             size={24}
             className="shrink-0 transition-transform duration-500 group-hover:rotate-90"

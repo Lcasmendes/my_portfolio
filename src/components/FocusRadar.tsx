@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Corners } from './Ornament';
 
 export interface Attribute {
   label: string;
@@ -10,7 +9,7 @@ export interface Attribute {
 }
 
 interface FocusRadarProps {
-  label: string;
+  label?: string;
   hint: string;
   attributes: Attribute[];
 }
@@ -37,26 +36,22 @@ function polygon(n: number, frac: number) {
   }).join(' ');
 }
 
-export default function FocusRadar({ label, hint, attributes }: FocusRadarProps) {
+export default function FocusRadar({ hint, attributes }: FocusRadarProps) {
   const n = attributes.length;
   const [hovered, setHovered] = useState<number | null>(null);
   const dataPoints = attributes.map((a, i) => point(i, n, a.value / 100));
   const dataPolygon = dataPoints.map((p) => `${p.x},${p.y}`).join(' ');
 
   return (
-    <div className="hud-panel p-5 sm:p-6">
-      <Corners />
-
-      <p className="text-xs uppercase tracking-widest2 text-frost-soft">{label}</p>
-
-      <div className="mt-4 grid items-center gap-6 md:grid-cols-2">
+    <div>
+      <div className="grid items-center gap-6 md:grid-cols-2">
         {/* Radar */}
         <div className="mx-auto w-full max-w-md">
           <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full">
             <defs>
               <radialGradient id="radarFill" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#aebccd" stopOpacity={0.45} />
-                <stop offset="100%" stopColor="#243044" stopOpacity={0.25} />
+                <stop offset="0%" stopColor="#7ee0ee" stopOpacity={0.5} />
+                <stop offset="100%" stopColor="#2a8aa0" stopOpacity={0.22} />
               </radialGradient>
               <filter id="radarGlow" x="-40%" y="-40%" width="180%" height="180%">
                 <feGaussianBlur stdDeviation="4" />
@@ -86,8 +81,8 @@ export default function FocusRadar({ label, hint, attributes }: FocusRadarProps)
                   y1={CY}
                   x2={p.x}
                   y2={p.y}
-                  stroke="#aebccd"
-                  strokeOpacity={active ? 0.7 : 0.18}
+                  stroke={active ? '#4fc3d6' : '#aebccd'}
+                  strokeOpacity={active ? 0.8 : 0.18}
                   strokeWidth={active ? 1.6 : 1}
                 />
               );
@@ -97,7 +92,7 @@ export default function FocusRadar({ label, hint, attributes }: FocusRadarProps)
             <motion.polygon
               points={dataPolygon}
               fill="url(#radarFill)"
-              stroke="#aebccd"
+              stroke="#4fc3d6"
               strokeWidth={2}
               filter="url(#radarGlow)"
               style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
@@ -108,7 +103,7 @@ export default function FocusRadar({ label, hint, attributes }: FocusRadarProps)
             <motion.polygon
               points={dataPolygon}
               fill="none"
-              stroke="#eef1f6"
+              stroke="#7ee0ee"
               strokeWidth={1.5}
               style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
               initial={{ scale: 0 }}
@@ -127,9 +122,9 @@ export default function FocusRadar({ label, hint, attributes }: FocusRadarProps)
                   style={{ cursor: 'pointer' }}
                 >
                   {active && (
-                    <circle cx={p.x} cy={p.y} r={9} fill="#aebccd" filter="url(#radarGlow)" opacity={0.7} />
+                    <circle cx={p.x} cy={p.y} r={9} fill="#4fc3d6" filter="url(#radarGlow)" opacity={0.8} />
                   )}
-                  <circle cx={p.x} cy={p.y} r={active ? 5 : 3.5} fill="#ffffff" />
+                  <circle cx={p.x} cy={p.y} r={active ? 5 : 3.5} fill={active ? '#7ee0ee' : '#ffffff'} />
                   <circle cx={p.x} cy={p.y} r={16} fill="transparent" />
                 </g>
               );
@@ -184,7 +179,7 @@ export default function FocusRadar({ label, hint, attributes }: FocusRadarProps)
                   <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/5">
                     <motion.div
                       className={`h-full rounded-full ${
-                        active ? 'bg-frost-soft shadow-glow' : 'bg-frost/70'
+                        active ? 'bg-accent shadow-glow-accent' : 'bg-frost/70'
                       }`}
                       initial={{ width: 0 }}
                       animate={{ width: `${a.value}%` }}

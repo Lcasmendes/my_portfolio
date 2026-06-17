@@ -52,7 +52,7 @@ export default function ContactRow({
       {/* outline layer */}
       <span
         aria-hidden
-        className="absolute inset-0 bg-frost/25 transition-colors duration-300 group-hover:bg-frost/60"
+        className="absolute inset-0 bg-frost/25 transition-colors duration-300 group-hover:bg-accent/60"
         style={{ clipPath: CLIP }}
       />
       {/* fill layer */}
@@ -63,7 +63,7 @@ export default function ContactRow({
       />
 
       {/* icon circle */}
-      <span className="absolute left-0 top-1/2 z-20 flex h-[3.4rem] w-[3.4rem] -translate-y-1/2 items-center justify-center rounded-full border-2 border-frost/45 bg-midnight text-frost shadow-glow transition-colors duration-300 group-hover:border-frost group-hover:text-frost-bright">
+      <span className="absolute left-0 top-1/2 z-20 flex h-[3.4rem] w-[3.4rem] -translate-y-1/2 items-center justify-center rounded-full border-2 border-frost/45 bg-midnight text-frost shadow-glow transition-colors duration-300 group-hover:border-accent group-hover:text-accent-bright group-hover:shadow-glow-accent">
         <span className="absolute inset-1 rounded-full border border-frost/20" />
         <Icon size={22} />
       </span>

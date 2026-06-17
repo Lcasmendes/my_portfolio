@@ -32,6 +32,12 @@
       { "title": "Experiência real", "desc": "BIP-Brain (saúde) e plataformas de dados na Deep Metrics." },
       { "title": "Formação", "desc": "Eng. da Computação na UFSCar e base militar na EPCAR." }
     ],
+    "stats": [
+      { "value": "10", "label": "Pipelines ETL em produção" },
+      { "value": "30+", "label": "Telas em React + Figma" },
+      { "value": "8+", "label": "Plataformas integradas" },
+      { "value": "2026", "label": "Eng. da Computação · UFSCar" }
+    ],
     "focusLabel": "Áreas de atuação",
     "focusHint": "Passe o mouse sobre uma área",
     "attributes": [
@@ -53,6 +59,8 @@
         "org": "Deep Metrics",
         "tag": "Experiência",
         "logo": "/institutions/deepmetrics.png",
+        "photo": "/institutions/deepmetrics.png",
+        "photoLogo": true,
         "period": "09/2025 – Atual",
         "lines": [
           "10 pipelines de ETL em produção (n8n + Cloud Run) conectando 8+ plataformas de mídia e CRM — Meta, Google e Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive e RD Station — ao BigQuery.",
@@ -68,6 +76,7 @@
         "org": "BipGroup · UFSCar",
         "tag": "Experiência",
         "logo": "/institutions/ufscar.png",
+        "photo": "/projects/bip-brain.png",
         "period": "03/2024 – 09/2025",
         "lines": [
           "30+ telas no Figma e em React + TypeScript para uma plataforma de diagnóstico médico por imagem.",
@@ -83,6 +92,7 @@
         "org": "UFSCar",
         "tag": "Acadêmico",
         "logo": "/institutions/ufscar.png",
+        "photo": "/institutions/dc_ufscarjpg.jpg",
         "period": "Durante a graduação",
         "lines": [
           "Apoiei calouros nos fundamentos de lógica e programação."
@@ -93,6 +103,7 @@
         "org": "UFSCar",
         "tag": "Formação",
         "logo": "/institutions/ufscar.png",
+        "photo": "/institutions/ufscar.jpg",
         "period": "08/2021 – 07/2026",
         "lines": [
           "Bacharelado unindo software e hardware: algoritmos, redes e sistemas distribuídos.",
@@ -104,6 +115,7 @@
         "org": "Força Aérea Brasileira · Barbacena/MG",
         "tag": "Formação",
         "logo": "/institutions/epcar.svg",
+        "photo": "/institutions/epcar.jpg",
         "period": "01/2017 – 12/2019",
         "lines": [
           "Ensino médio de excelência da FAB, voltado a formar futuros oficiais aviadores — exatas e disciplina no limite."
@@ -178,10 +190,11 @@
         ]
       },
       {
-        "name": "Testes",
-        "desc": "Qualidade garantida por testes automatizados.",
+        "name": "Agentes & IA",
+        "desc": "Automação inteligente e IA aplicada ao desenvolvimento.",
         "items": [
-          { "name": "Jest", "desc": "Testes unitários de componentes e funções." }
+          { "name": "Criação de Agentes", "desc": "Na Multimachine (empresa irmã da Deep Metrics), construindo agentes de atendimento automatizado." },
+          { "name": "Claude Code", "desc": "Uso de IA como copiloto no dia a dia de desenvolvimento." }
         ]
       },
       {

@@ -17,6 +17,12 @@ const config: Config = {
           dim: '#6e7888', // muted silver — secondary text
           bright: '#eef1f6', // near-white ivory — active highlights
         },
+        // FFXV "magic/warp" cyan — reserved for active/energised states only.
+        accent: {
+          DEFAULT: '#4fc3d6', // royal cyan — active borders, links, highlights
+          bright: '#7ee0ee', // luminous cyan — peak glow
+          deep: '#2a8aa0', // deep cyan — shadows/glows
+        },
       },
       fontFamily: {
         display: ['var(--font-display)', 'system-ui', 'sans-serif'],
@@ -28,10 +34,14 @@ const config: Config = {
       boxShadow: {
         glow: '0 0 16px rgba(174, 188, 205, 0.16)',
         'glow-strong': '0 0 24px rgba(206, 217, 232, 0.32)',
+        'glow-accent': '0 0 18px rgba(79, 195, 214, 0.40)',
+        'glow-accent-strong': '0 0 26px rgba(126, 224, 238, 0.55)',
       },
       backgroundImage: {
         'frost-line':
           'linear-gradient(90deg, transparent, rgba(174,188,205,0.45), transparent)',
+        'accent-line':
+          'linear-gradient(90deg, transparent, rgba(79,195,214,0.55), transparent)',
       },
       keyframes: {
         'fade-up': {
