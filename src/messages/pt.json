@@ -3,6 +3,7 @@
     "name": "Lucas Silva Mendes",
     "role": "Desenvolvedor Full-stack",
     "tagline": "Front-end · Cloud · Dados",
+    "available": "Disponível para novas oportunidades",
     "siteTitle": "Lucas Mendes — Portfólio",
     "homeTitle": "Lucas Silva Mendes — Desenvolvedor Full-stack em São Carlos e Cataguases",
     "siteDescription": "Lucas Silva Mendes, desenvolvedor full-stack (React, Next.js, Node.js) e engenheiro de dados em São Carlos (SP) e Cataguases (MG). Construo da interface ao dado: front-end, cloud, pipelines e back-end.",
@@ -130,6 +131,9 @@
   "projects": {
     "title": "Projetos",
     "subtitle": "O que eu construí",
+    "githubTitle": "Mais no GitHub",
+    "githubText": "Código, experimentos e outros projetos.",
+    "githubCta": "Ver perfil",
     "metaDescription": "Projetos de Lucas Silva Mendes: a plataforma médica BIP-Brain (React/TypeScript) e o TCC de geração automática de autenticação e autorização para microsserviços.",
     "items": [
       {

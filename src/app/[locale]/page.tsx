@@ -3,6 +3,7 @@ import { Check } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import FocusRadar, { type Attribute } from '@/components/FocusRadar';
 import ContactCTA from '@/components/ContactCTA';
+import AvailabilityBadge from '@/components/AvailabilityBadge';
 import { Flourish } from '@/components/Ornament';
 import { pageMetadata } from '@/data/site';
 
@@ -32,6 +33,7 @@ export default async function AboutPage({
     <div>
       {/* ---- Hero ---- */}
       <section className="relative pb-2 pt-2">
+        <AvailabilityBadge label={tMeta('available')} className="mb-5" />
         <p className="mb-4 text-xs uppercase tracking-widest2 text-accent">
           {tMeta('tagline')}
         </p>

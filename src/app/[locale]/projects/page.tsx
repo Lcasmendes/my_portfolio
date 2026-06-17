@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
-import { ExternalLink, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, ShieldCheck, ArrowUpRight, Github } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Tag from '@/components/Tag';
 import ContactCTA from '@/components/ContactCTA';
 import { Flourish } from '@/components/Ornament';
 import { pageMetadata } from '@/data/site';
+import { profile } from '@/data/profile';
 
 export async function generateMetadata({
   params,
@@ -161,6 +162,37 @@ export default async function ProjectsPage({
           );
         })}
       </div>
+
+      {/* More on GitHub */}
+      <a
+        href={profile.github.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group mt-20 flex items-center justify-between gap-4 rounded-xl px-6 py-6 ring-1 ring-frost/15 transition-all hover:ring-accent/40 sm:mt-24 sm:px-8"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 12% 30%, rgba(79,195,214,0.10), transparent 55%), linear-gradient(150deg, rgba(28,40,72,0.55) 0%, rgba(10,17,36,0.55) 100%)',
+        }}
+      >
+        <div className="flex items-center gap-4 sm:gap-5">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-frost/25 bg-midnight text-frost transition-colors group-hover:border-accent group-hover:text-accent-bright sm:h-14 sm:w-14">
+            <Github className="h-6 w-6 sm:h-7 sm:w-7" />
+          </span>
+          <div>
+            <h2 className="font-display text-lg tracking-wide text-white sm:text-xl">
+              {t('githubTitle')}
+            </h2>
+            <p className="mt-0.5 text-sm text-frost-soft/80">{t('githubText')}</p>
+          </div>
+        </div>
+        <span className="flex shrink-0 items-center gap-2 text-sm tracking-wide text-frost-dim transition-colors group-hover:text-accent-bright">
+          <span className="hidden sm:inline">{t('githubCta')}</span>
+          <ArrowUpRight
+            size={18}
+            className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
+        </span>
+      </a>
 
       <div className="mt-24 sm:mt-32">
         <ContactCTA />

@@ -1,11 +1,13 @@
 import { getTranslations, getLocale } from 'next-intl/server';
 import ContactRow, { type ContactIconKey } from './ContactRow';
+import AvailabilityBadge from './AvailabilityBadge';
 import { OrnamentDivider } from './Ornament';
 import { profile } from '@/data/profile';
 
 // Contact call-to-action used at the foot of pages (replaces a dedicated page).
 export default async function ContactCTA() {
   const t = await getTranslations('contact');
+  const tMeta = await getTranslations('meta');
   // Serve the full-stack CV in the page's language (pt/en).
   const locale = await getLocale();
   const cvHref = `/cv/Lucas_Mendes_CV_${locale === 'en' ? 'en' : 'pt'}.pdf`;
@@ -61,6 +63,7 @@ export default async function ContactCTA() {
   return (
     <section className="mt-14">
       <OrnamentDivider className="mb-8" />
+      <AvailabilityBadge label={tMeta('available')} className="mb-4" />
       <h2 className="font-display text-2xl tracking-wide text-white">
         {t('ctaTitle')}
       </h2>

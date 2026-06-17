@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
+import { Analytics } from '@vercel/analytics/next';
 import { Jost, Inter } from 'next/font/google';
 import { routing } from '@/i18n/routing';
 import AppShell from '@/components/AppShell';
@@ -99,6 +100,7 @@ export default async function LocaleLayout({
             <AppShell>{children}</AppShell>
           </SoundProvider>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
