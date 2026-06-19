@@ -25,23 +25,16 @@ const ICONS: Record<string, LucideIcon> = {
 
 const GAP = 0.04;
 
-// Cross/diamond layout — maps each section index to a compass point.
-// Order follows `sections`: about → top, journey → left, projects → right, skills → bottom.
-type Slot = 'top' | 'left' | 'right' | 'bottom';
-const SLOTS: Slot[] = ['top', 'left', 'right', 'bottom'];
-const SLOT_POS: Record<Slot, { left: string; top: string }> = {
-  top: { left: '50%', top: '21%' },
-  left: { left: '21%', top: '50%' },
-  right: { left: '79%', top: '50%' },
-  bottom: { left: '50%', top: '79%' },
-};
-// Arrow key → slot → section index
-const ARROW_SLOT: Record<string, Slot> = {
-  ArrowUp: 'top',
-  ArrowLeft: 'left',
-  ArrowRight: 'right',
-  ArrowDown: 'bottom',
-};
+// Desktop: a quarter-circle that fans out from the bottom-left corner (where the
+// trigger button sits) instead of taking over the whole screen. The angles are
+// spread wide so that a node's label (placed below it) never lands on top of the
+// next node's diamond.
+const CORNER_R = 372; // base arc radius in px (shrinks on short viewports)
+const CORNER_AX = 66; // anchor x from the left edge
+const CORNER_AY = 66; // anchor y from the bottom edge
+// One angle (degrees from the +x axis) per section, top to bottom: about sits
+// at the top (north), skills nearest the button (east).
+const CORNER_ANGLES = [90, 60, 32, 6];
 
 interface RadialMenuProps {
   open: boolean;
@@ -57,6 +50,7 @@ export default function RadialMenu({ open, onClose }: RadialMenuProps) {
   const n = sections.length;
   const [half, setHalf] = useState(false);
   const [hover, setHover] = useState(0);
+  const [radius, setRadius] = useState(CORNER_R);
 
   // Half wheel on mobile, diamond cross on desktop.
   useEffect(() => {
@@ -65,6 +59,18 @@ export default function RadialMenu({ open, onClose }: RadialMenuProps) {
     update();
     mq.addEventListener('change', update);
     return () => mq.removeEventListener('change', update);
+  }, []);
+
+  // Shrink the desktop fan radius so the topmost node never overflows the
+  // viewport on short windows (anchor + radius + half a node + a little margin).
+  useEffect(() => {
+    const update = () => {
+      const maxByHeight = window.innerHeight - 175;
+      setRadius(Math.max(248, Math.min(CORNER_R, maxByHeight)));
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
   }, []);
 
   const currentIndex = sections.findIndex((s) =>
@@ -99,15 +105,6 @@ export default function RadialMenu({ open, onClose }: RadialMenuProps) {
         navigate(hover);
         return;
       }
-      if (cross && ARROW_SLOT[e.key]) {
-        e.preventDefault();
-        const idx = SLOTS.indexOf(ARROW_SLOT[e.key]);
-        if (idx >= 0 && idx !== hover) {
-          play('hover');
-          setHover(idx);
-        }
-        return;
-      }
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
         e.preventDefault();
         play('hover');
@@ -120,7 +117,7 @@ export default function RadialMenu({ open, onClose }: RadialMenuProps) {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open, hover, n, navigate, onClose, play, cross]);
+  }, [open, hover, n, navigate, onClose, play]);
 
   // Lock page scroll while the menu is open and compensate for the
   // removed scrollbar so the layout underneath doesn't shift.
@@ -170,20 +167,25 @@ export default function RadialMenu({ open, onClose }: RadialMenuProps) {
     <AnimatePresence>
       {open && (
         <motion.div
-          className={`fixed inset-0 z-50 flex justify-center ${
-            half ? 'items-end' : 'items-center'
+          className={`fixed inset-0 z-50 ${
+            half ? 'flex items-end justify-center' : ''
           }`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
         >
-          {/* backdrop */}
+          {/* backdrop — heavy dim on the mobile half-wheel, just a soft veil on
+              desktop so the corner wheel doesn't feel like a full-screen takeover */}
           <button
             type="button"
             aria-label={t('close')}
             onClick={onClose}
-            className="absolute inset-0 bg-abyss/70 backdrop-blur-md"
+            className={`absolute inset-0 ${
+              half
+                ? 'bg-abyss/70 backdrop-blur-md'
+                : 'bg-abyss/40 backdrop-blur-[2px]'
+            }`}
           />
 
           {/* language switcher — only while the menu is open, top-left */}
@@ -191,235 +193,231 @@ export default function RadialMenu({ open, onClose }: RadialMenuProps) {
             <LocaleSwitcher collapsed={false} />
           </div>
 
-          <button
-            type="button"
-            aria-label={t('close')}
-            onClick={onClose}
-            className="absolute right-5 top-5 z-10 text-frost-dim transition hover:text-frost-bright"
-          >
-            <X size={26} />
-          </button>
+          {half && (
+            <button
+              type="button"
+              aria-label={t('close')}
+              onClick={onClose}
+              className="absolute right-5 top-5 z-10 text-frost-dim transition hover:text-frost-bright"
+            >
+              <X size={26} />
+            </button>
+          )}
 
           {cross ? (
-            /* ---------- DESKTOP: diamond cross (FFXV "Primary Arms") ---------- */
-            <motion.div
-              className="relative z-[1] w-[min(90vw,52rem)] px-4"
-              initial={{ scale: 0.92, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.94, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 280, damping: 26 }}
-            >
-              {/* top band — echoes the "Primary Arms" header */}
-              <div className="mb-2 flex items-center gap-4">
-                <span className="font-display text-2xl tracking-wide text-frost-bright">
-                  {hoveredKey ? t(hoveredKey) : t('menu')}
+            /* ---------- DESKTOP: corner quarter-wheel ---------- */
+            <div className="absolute inset-0 z-[1]">
+              {/* hub at the anchor — doubles as the close button */}
+              <motion.button
+                type="button"
+                aria-label={t('close')}
+                onClick={onClose}
+                className="group absolute"
+                style={{
+                  left: `${CORNER_AX}px`,
+                  bottom: `${CORNER_AY}px`,
+                  transform: 'translate(-50%, 50%)',
+                }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+              >
+                <span className="relative flex h-16 w-16 items-center justify-center rounded-full border border-frost/40 bg-midnight/85 text-frost-soft shadow-glow-strong backdrop-blur-md transition-colors group-hover:border-accent group-hover:text-accent-bright">
+                  <span className="pointer-events-none absolute inset-0 rounded-full border border-accent/40 animate-pulse-glow" />
+                  <X
+                    size={24}
+                    className="transition-transform duration-300 group-hover:rotate-90"
+                  />
                 </span>
-                <span className="h-px flex-1 bg-frost-line" />
-              </div>
+              </motion.button>
 
-              <div className="relative mx-auto aspect-square w-[min(62vmin,29rem)]">
-                {/* center compass ornament */}
-                <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <svg width={54} height={54} viewBox="0 0 54 54" aria-hidden>
-                    <g
-                      stroke="#aebccd"
-                      strokeOpacity={0.5}
-                      strokeWidth={1}
-                      fill="none"
-                    >
-                      <path d="M27 6 L31 27 L27 48 L23 27 Z" />
-                      <path d="M6 27 L27 23 L48 27 L27 31 Z" />
-                    </g>
-                    <circle cx={27} cy={27} r={2.4} fill="#aebccd" />
-                  </svg>
-                </div>
-
-                {sections.map((section, i) => {
-                  const slot = SLOTS[i];
-                  const pos = SLOT_POS[slot];
-                  const isHover = hover === i;
-                  const isCurrent = currentIndex === i;
-                  const Icon = ICONS[section.key];
-                  return (
-                    <button
-                      key={section.key}
-                      type="button"
-                      aria-label={t(section.key)}
-                      onMouseEnter={() => {
-                        play('hover');
-                        setHover(i);
+              {sections.map((section, i) => {
+                const a = (CORNER_ANGLES[i] * Math.PI) / 180;
+                const x = CORNER_AX + radius * Math.cos(a);
+                const y = CORNER_AY + radius * Math.sin(a);
+                const isHover = hover === i;
+                const isCurrent = currentIndex === i;
+                const Icon = ICONS[section.key];
+                return (
+                  <button
+                    key={section.key}
+                    type="button"
+                    aria-label={t(section.key)}
+                    onMouseEnter={() => {
+                      play('hover');
+                      setHover(i);
+                    }}
+                    onFocus={() => setHover(i)}
+                    onClick={() => navigate(i)}
+                    className="absolute flex flex-col items-center outline-none"
+                    style={{
+                      left: `${x}px`,
+                      bottom: `${y}px`,
+                      transform: 'translate(-50%, 50%)',
+                    }}
+                  >
+                    <motion.div
+                      className="relative"
+                      style={{ width: 'clamp(82px,9.5vmin,104px)' }}
+                      initial={{ scale: 0.3, opacity: 0 }}
+                      animate={{ scale: isHover ? 1.07 : 1, opacity: 1 }}
+                      exit={{ scale: 0.3, opacity: 0 }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 320,
+                        damping: 22,
+                        delay: i * 0.04,
                       }}
-                      onFocus={() => setHover(i)}
-                      onClick={() => navigate(i)}
-                      className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center outline-none"
-                      style={{ left: pos.left, top: pos.top }}
                     >
-                      <motion.div
-                        className="relative"
-                        style={{ width: 'clamp(112px,14vmin,150px)' }}
-                        animate={{ scale: isHover ? 1.06 : 1 }}
-                        transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-                      >
-                        <svg viewBox="0 0 128 128" className="h-auto w-full">
-                          <defs>
-                            <radialGradient
-                              id="diamondHub"
-                              cx="50%"
-                              cy="40%"
-                              r="62%"
-                            >
-                              <stop offset="0%" stopColor="#26344f" stopOpacity={0.99} />
-                              <stop offset="100%" stopColor="#070d1c" stopOpacity={1} />
-                            </radialGradient>
-                            <filter
-                              id="diamondGlow"
-                              x="-40%"
-                              y="-40%"
-                              width="180%"
-                              height="180%"
-                            >
-                              <feGaussianBlur stdDeviation="4" />
-                            </filter>
-                          </defs>
+                      <svg viewBox="0 0 128 128" className="h-auto w-full">
+                        <defs>
+                          <radialGradient id="diamondHub" cx="50%" cy="40%" r="62%">
+                            <stop offset="0%" stopColor="#26344f" stopOpacity={0.99} />
+                            <stop offset="100%" stopColor="#070d1c" stopOpacity={1} />
+                          </radialGradient>
+                          <filter
+                            id="diamondGlow"
+                            x="-40%"
+                            y="-40%"
+                            width="180%"
+                            height="180%"
+                          >
+                            <feGaussianBlur stdDeviation="4" />
+                          </filter>
+                        </defs>
 
-                          {/* hover glow behind the frame */}
-                          {isHover && (
-                            <rect
-                              x={25}
-                              y={25}
-                              width={78}
-                              height={78}
-                              transform="rotate(45 64 64)"
-                              fill="#4fc3d6"
-                              opacity={0.28}
-                              filter="url(#diamondGlow)"
-                            />
-                          )}
-
-                          {/* outer diamond frame */}
+                        {/* hover glow behind the frame */}
+                        {isHover && (
                           <rect
                             x={25}
                             y={25}
                             width={78}
                             height={78}
                             transform="rotate(45 64 64)"
-                            fill="rgba(40,56,92,0.2)"
-                            stroke={
-                              isHover
-                                ? '#7ee0ee'
-                                : isCurrent
-                                  ? '#4fc3d6'
-                                  : 'rgba(174,188,205,0.4)'
-                            }
-                            strokeWidth={isHover ? 2 : 1.2}
-                            className="transition-colors"
+                            fill="#4fc3d6"
+                            opacity={0.28}
+                            filter="url(#diamondGlow)"
                           />
-                          {/* inner diamond frame */}
-                          <rect
-                            x={31}
-                            y={31}
-                            width={66}
-                            height={66}
-                            transform="rotate(45 64 64)"
-                            fill="none"
-                            stroke="rgba(174,188,205,0.22)"
-                            strokeWidth={1}
-                          />
+                        )}
 
-                          {/* portrait circle — opaque, with ornate double ring */}
-                          <circle cx={64} cy={64} r={29} fill="url(#diamondHub)" />
-                          <circle
-                            cx={64}
-                            cy={64}
-                            r={29}
-                            fill="none"
-                            stroke={isHover ? '#7ee0ee' : '#aebccd'}
-                            strokeOpacity={isHover ? 0.95 : 0.7}
-                            strokeWidth={1.4}
-                            className="transition-colors"
-                          />
-                          <circle
-                            cx={64}
-                            cy={64}
-                            r={32.5}
-                            fill="none"
-                            stroke={isHover ? '#4fc3d6' : 'rgba(174,188,205,0.4)'}
-                            strokeWidth={0.8}
-                          />
-                          {/* diagonal tick ornaments around the ring */}
-                          {[45, 135, 225, 315].map((deg) => {
-                            const a = (deg * Math.PI) / 180;
-                            const c = Math.cos(a);
-                            const s = Math.sin(a);
-                            return (
-                              <line
-                                key={deg}
-                                x1={64 + 29 * c}
-                                y1={64 + 29 * s}
-                                x2={64 + 35 * c}
-                                y2={64 + 35 * s}
-                                stroke={isHover ? '#7ee0ee' : 'rgba(174,188,205,0.6)'}
-                                strokeWidth={1.2}
-                                className="transition-colors"
-                              />
-                            );
-                          })}
+                        {/* outer diamond frame */}
+                        <rect
+                          x={25}
+                          y={25}
+                          width={78}
+                          height={78}
+                          transform="rotate(45 64 64)"
+                          fill="rgba(40,56,92,0.2)"
+                          stroke={
+                            isHover
+                              ? '#7ee0ee'
+                              : isCurrent
+                                ? '#4fc3d6'
+                                : 'rgba(174,188,205,0.4)'
+                          }
+                          strokeWidth={isHover ? 2 : 1.2}
+                          className="transition-colors"
+                        />
+                        {/* inner diamond frame */}
+                        <rect
+                          x={31}
+                          y={31}
+                          width={66}
+                          height={66}
+                          transform="rotate(45 64 64)"
+                          fill="none"
+                          stroke="rgba(174,188,205,0.22)"
+                          strokeWidth={1}
+                        />
 
-                          {/* corner flourishes at the four diamond points */}
-                          {[
-                            [64, 9],
-                            [119, 64],
-                            [64, 119],
-                            [9, 64],
-                          ].map(([px, py]) => (
-                            <rect
-                              key={`${px}-${py}`}
-                              x={px - 4}
-                              y={py - 4}
-                              width={8}
-                              height={8}
-                              transform={`rotate(45 ${px} ${py})`}
-                              fill={isHover ? '#eef1f6' : 'rgba(174,188,205,0.55)'}
+                        {/* portrait circle — opaque, with ornate double ring */}
+                        <circle cx={64} cy={64} r={29} fill="url(#diamondHub)" />
+                        <circle
+                          cx={64}
+                          cy={64}
+                          r={29}
+                          fill="none"
+                          stroke={isHover ? '#7ee0ee' : '#aebccd'}
+                          strokeOpacity={isHover ? 0.95 : 0.7}
+                          strokeWidth={1.4}
+                          className="transition-colors"
+                        />
+                        <circle
+                          cx={64}
+                          cy={64}
+                          r={32.5}
+                          fill="none"
+                          stroke={isHover ? '#4fc3d6' : 'rgba(174,188,205,0.4)'}
+                          strokeWidth={0.8}
+                        />
+                        {/* diagonal tick ornaments around the ring */}
+                        {[45, 135, 225, 315].map((deg) => {
+                          const a = (deg * Math.PI) / 180;
+                          const c = Math.cos(a);
+                          const s = Math.sin(a);
+                          return (
+                            <line
+                              key={deg}
+                              x1={64 + 29 * c}
+                              y1={64 + 29 * s}
+                              x2={64 + 35 * c}
+                              y2={64 + 35 * s}
+                              stroke={isHover ? '#7ee0ee' : 'rgba(174,188,205,0.6)'}
+                              strokeWidth={1.2}
                               className="transition-colors"
                             />
-                          ))}
-                        </svg>
+                          );
+                        })}
 
-                        {/* icon centered over the portrait circle */}
-                        <span
-                          className="absolute inset-0 grid place-items-center transition-colors"
-                          style={{ color: isHover ? '#7ee0ee' : '#aebccd' }}
-                        >
-                          <Icon size={30} strokeWidth={1.6} />
-                        </span>
-                      </motion.div>
+                        {/* corner flourishes at the four diamond points */}
+                        {[
+                          [64, 9],
+                          [119, 64],
+                          [64, 119],
+                          [9, 64],
+                        ].map(([px, py]) => (
+                          <rect
+                            key={`${px}-${py}`}
+                            x={px - 4}
+                            y={py - 4}
+                            width={8}
+                            height={8}
+                            transform={`rotate(45 ${px} ${py})`}
+                            fill={isHover ? '#eef1f6' : 'rgba(174,188,205,0.55)'}
+                            className="transition-colors"
+                          />
+                        ))}
+                      </svg>
 
+                      {/* icon centered over the portrait circle */}
                       <span
-                        className="mt-2.5 flex items-center gap-1.5 font-body text-[0.95rem] transition-colors"
-                        style={{
-                          color: isHover ? '#ffffff' : '#d4dbe6',
-                          fontWeight: isHover ? 700 : 500,
-                          textShadow: '0 1px 8px rgba(7,13,28,0.9)',
-                        }}
+                        className="absolute inset-0 grid place-items-center transition-colors"
+                        style={{ color: isHover ? '#7ee0ee' : '#aebccd' }}
                       >
-                        {isCurrent && (
-                          <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent shadow-glow-accent" />
-                        )}
-                        {t(section.key)}
+                        <Icon size={26} strokeWidth={1.6} />
                       </span>
-                    </button>
-                  );
-                })}
-              </div>
+                    </motion.div>
 
-              {/* bottom band — echoes the "Accessories" footer */}
-              <div className="mt-2 flex items-center gap-4">
-                <span className="font-body text-[0.7rem] tracking-[0.2em] text-frost-dim">
-                  {t('wheelHint')}
-                </span>
-                <span className="h-px flex-1 bg-frost-line" />
-              </div>
-            </motion.div>
+                    <span
+                      className={`mt-5 flex items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 py-1 font-body text-[0.82rem] tracking-wide shadow-lg backdrop-blur-sm transition-colors ${
+                        isHover
+                          ? 'border-accent/70 bg-midnight text-white'
+                          : isCurrent
+                            ? 'border-accent/50 bg-midnight/95 text-frost-bright'
+                            : 'border-frost/25 bg-midnight/90 text-frost-soft'
+                      }`}
+                      style={{ fontWeight: isHover ? 700 : 500 }}
+                    >
+                      {isCurrent && (
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent shadow-glow-accent" />
+                      )}
+                      {t(section.key)}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           ) : (
             /* ---------- MOBILE: half wheel ---------- */
             <motion.div
