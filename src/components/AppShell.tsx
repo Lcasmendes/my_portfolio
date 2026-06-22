@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Aperture } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { usePathname } from '@/i18n/navigation';
 import RadialMenu from './RadialMenu';
 import PageTransition from './PageTransition';
 import { useSound } from './sound/SoundProvider';
@@ -10,17 +11,24 @@ import { useSound } from './sound/SoundProvider';
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const t = useTranslations('nav');
   const { play } = useSound();
+  const pathname = usePathname();
+  // The home page opens with a full-bleed hero that carries its own header.
+  // There, the floating nav stays hidden until the user scrolls past the hero.
+  const isHome = pathname === '/';
   const [open, setOpen] = useState(false);
   const [atBottom, setAtBottom] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
 
   // Expand the mobile button to a labelled pill once the user reaches the
-  // bottom of the page — makes it obvious where to navigate next.
+  // bottom of the page — makes it obvious where to navigate next. Also track
+  // when the home hero has scrolled out of the way.
   useEffect(() => {
     const onScroll = () => {
       const reached =
         window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 90;
       setAtBottom(reached);
+      setPastHero(window.scrollY > window.innerHeight * 0.7);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -56,8 +64,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       </main>
 
       {/* Floating menu button — icon-only circle on mobile (bottom-right);
-          labelled pill on desktop (bottom-left). */}
-      {!open && (
+          labelled pill on desktop (bottom-left). Hidden over the home hero. */}
+      {!open && (!isHome || pastHero) && (
         <button
           type="button"
           onClick={openMenu}

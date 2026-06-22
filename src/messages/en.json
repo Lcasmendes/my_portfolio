@@ -27,6 +27,13 @@
     "subtitle": "The person behind the code",
     "welcome": "Hi, welcome",
     "welcomeText": "I'm Lucas Silva Mendes, a full-stack developer building from interface to data. Feel free to look around.",
+    "heroLine1": "From interface",
+    "heroLine2": "to data.",
+    "heroLead": "A full-stack developer who goes from the front-end to data engineering, end to end. React and Next.js on screen, pipelines and cloud underneath.",
+    "ctaProjects": "View projects",
+    "ctaContact": "Let's talk",
+    "heroLocation": "São Carlos · Cataguases · Brazil",
+    "scrollHint": "Scroll to explore",
     "bioKicker": "What I do",
     "bio": [
       { "title": "Front-end", "desc": "React, Next.js and TypeScript for complex, responsive interfaces." },

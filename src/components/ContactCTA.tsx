@@ -61,7 +61,7 @@ export default async function ContactCTA() {
   ];
 
   return (
-    <section className="mt-14">
+    <section id="contact" className="mt-14 scroll-mt-8">
       <OrnamentDivider className="mb-8" />
       <AvailabilityBadge label={tMeta('available')} className="mb-4" />
       <h2 className="font-display text-2xl tracking-wide text-white">
