@@ -144,6 +144,17 @@
     "metaDescription": "Projects by Lucas Silva Mendes: the BIP-Brain medical imaging platform (React/TypeScript) and a thesis on auto-generating authentication and authorization for microservices.",
     "items": [
       {
+        "name": "Prodigium",
+        "tag": "Company Website · Prodigium",
+        "status": "In production",
+        "description": "A studio that builds professional websites and landing pages, delivered in up to 15 business days. I worked on the website's development, from structure to interface.",
+        "image": "/projects/prodigium.webp",
+        "imageAlt": "Prodigium website landing page",
+        "url": "https://prodigium.com.br/",
+        "linkLabel": "Visit the site",
+        "techs": ["Astro", "Node.js", "JavaScript"]
+      },
+      {
         "name": "BIP-Brain",
         "tag": "Web Platform · BipGroup (UFSCar)",
         "status": "In production",
@@ -152,7 +163,7 @@
         "imageAlt": "BIP-Brain platform landing page",
         "url": "https://www.brain.ufscar.br/pt",
         "linkLabel": "Visit the platform",
-        "techs": ["React", "TypeScript", "Figma", "CSS"]
+        "techs": ["Next.js", "React", "TypeScript", "Figma", "CSS"]
       },
       {
         "name": "Automatic security for microservices",
