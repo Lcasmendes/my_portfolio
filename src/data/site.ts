@@ -74,7 +74,6 @@ export function personJsonLd(jobTitle: string) {
       '@type': 'CollegeOrUniversity',
       name: 'Universidade Federal de São Carlos (UFSCar)',
     },
-    worksFor: { '@type': 'Organization', name: 'Deep Metrics' },
     knowsAbout: [
       'React',
       'Next.js',

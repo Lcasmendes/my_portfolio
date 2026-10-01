@@ -40,7 +40,7 @@
       { "title": "Cloud & Dados", "desc": "Pipelines de ETL em produção na GCP, BigQuery e automação de integrações." },
       { "title": "Back-end & Segurança", "desc": "Microsserviços, autenticação e controle de acesso com Keycloak e RBAC." },
       { "title": "Visão de produto", "desc": "Da modelagem de dados até a tela do usuário, ponta a ponta." },
-      { "title": "Experiência real", "desc": "BIP-Brain (saúde) e plataformas de dados na Deep Metrics." },
+      { "title": "Experiência real", "desc": "BIP-Brain (saúde) e plataformas de dados na Deep Metrics (2025–2026)." },
       { "title": "Formação", "desc": "Eng. da Computação na UFSCar e base militar na EPCAR." }
     ],
     "stats": [
@@ -73,7 +73,7 @@
         "logo": "/institutions/deepmetrics.png",
         "photo": "/institutions/deepmetrics.png",
         "photoLogo": true,
-        "period": "09/2025 – Atual",
+        "period": "09/2025 – 06/2026",
         "lines": [
           "10 pipelines de ETL em produção (n8n + Cloud Run) conectando 8+ plataformas de mídia e CRM (Meta, Google e Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive e RD Station) ao BigQuery.",
           "Tracking server-side com GTM enviando conversões em paralelo para GA4, Meta, Google e Microsoft Ads, com atribuição cross-channel e sinais melhores para os algoritmos de campanha.",
@@ -188,7 +188,7 @@
         "name": "Front-end",
         "desc": "Interfaces complexas e responsivas, do protótipo ao código.",
         "items": [
-          { "name": "React", "desc": "Base das interfaces do BipGroup (30+ telas) e da plataforma interna de dados na Deep Metrics." },
+          { "name": "React", "desc": "Base das interfaces do BipGroup (30+ telas) e da plataforma interna de dados que construí na Deep Metrics." },
           { "name": "Next.js", "desc": "Framework React que uso para construir interfaces, inclusive este portfólio." },
           { "name": "TypeScript", "desc": "Tipagem estática em todo projeto React que toco." },
           { "name": "JavaScript", "desc": "Linguagem base do front-end e das automações de pipeline." },
@@ -201,7 +201,7 @@
         "desc": "Microsserviços, autenticação e controle de acesso.",
         "items": [
           { "name": "Python", "desc": "Automação e manipulação de dados." },
-          { "name": "Node.js / Express", "desc": "Back-end dos dashboards de dados na Deep Metrics, servindo BigQuery e Supabase." },
+          { "name": "Node.js / Express", "desc": "Back-end dos dashboards de dados que construí na Deep Metrics, servindo BigQuery e Supabase." },
           { "name": "Microsserviços", "desc": "Tema do meu TCC: migração de monólito para microsserviços." },
           { "name": "Keycloak", "desc": "Provedor de identidade self-hosted que usei para gerar autenticação/autorização." },
           { "name": "RBAC", "desc": "Controle de acesso baseado em funções, implementado sobre o Keycloak." }
@@ -214,14 +214,14 @@
           { "name": "GCP (Cloud Run, BigQuery)", "desc": "10 pipelines de ETL em produção, dados centralizados no BigQuery." },
           { "name": "Docker", "desc": "Containerização de serviços e ambientes." },
           { "name": "Docker Compose", "desc": "Orquestração de múltiplos containers no ambiente local." },
-          { "name": "n8n", "desc": "Motor de automação por trás dos pipelines da Deep Metrics." }
+          { "name": "n8n", "desc": "Motor de automação por trás dos pipelines que mantive na Deep Metrics." }
         ]
       },
       {
         "name": "Agentes & IA",
         "desc": "Automação inteligente e IA aplicada ao desenvolvimento.",
         "items": [
-          { "name": "Criação de Agentes", "desc": "Na Multimachine (empresa irmã da Deep Metrics), construindo agentes de atendimento automatizado." },
+          { "name": "Criação de Agentes", "desc": "Na Multimachine (empresa irmã da Deep Metrics), construí agentes de atendimento automatizado." },
           { "name": "Claude Code", "desc": "Uso de IA como copiloto no dia a dia de desenvolvimento." }
         ]
       },
@@ -230,8 +230,8 @@
         "desc": "Modelagem e consulta de dados.",
         "items": [
           { "name": "SQL", "desc": "Modelagem de dados e consultas para os dashboards." },
-          { "name": "BigQuery", "desc": "Data warehouse onde centralizo e modelo os dados na Deep Metrics." },
-          { "name": "Supabase", "desc": "Backend Postgres da plataforma interna de dados na Deep Metrics." },
+          { "name": "BigQuery", "desc": "Data warehouse onde centralizei e modelei os dados na Deep Metrics." },
+          { "name": "Supabase", "desc": "Backend Postgres da plataforma interna de dados da Deep Metrics." },
           { "name": "Firestore", "desc": "Banco NoSQL para dados em tempo real." }
         ]
       },

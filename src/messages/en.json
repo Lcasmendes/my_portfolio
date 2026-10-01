@@ -40,7 +40,7 @@
       { "title": "Cloud & Data", "desc": "Production ETL pipelines on GCP, BigQuery and integration automation." },
       { "title": "Back-end & Security", "desc": "Microservices, authentication and access control with Keycloak and RBAC." },
       { "title": "Product mindset", "desc": "From data modeling to the user's screen, end to end." },
-      { "title": "Real experience", "desc": "BIP-Brain (healthcare) and data platforms at Deep Metrics." },
+      { "title": "Real experience", "desc": "BIP-Brain (healthcare) and data platforms at Deep Metrics (2025–2026)." },
       { "title": "Education", "desc": "Computer Engineering at UFSCar and a military-school background (EPCAR)." }
     ],
     "stats": [
@@ -73,7 +73,7 @@
         "logo": "/institutions/deepmetrics.png",
         "photo": "/institutions/deepmetrics.png",
         "photoLogo": true,
-        "period": "09/2025 – Present",
+        "period": "09/2025 – 06/2026",
         "lines": [
           "10 production ETL pipelines (n8n + Cloud Run) connecting 8+ ad & CRM platforms (Meta, Google and Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive and RD Station) into BigQuery.",
           "Server-side GTM tracking sending conversions in parallel to GA4, Meta, Google and Microsoft Ads, with cross-channel attribution and stronger signals for the campaign algorithms.",
@@ -188,7 +188,7 @@
         "name": "Front-end",
         "desc": "Complex, responsive interfaces, from prototype to code.",
         "items": [
-          { "name": "React", "desc": "Core of the BipGroup interfaces (30+ screens) and the internal data platform at Deep Metrics." },
+          { "name": "React", "desc": "Core of the BipGroup interfaces (30+ screens) and the internal data platform I built at Deep Metrics." },
           { "name": "Next.js", "desc": "The React framework I use to build interfaces, including this portfolio." },
           { "name": "TypeScript", "desc": "Static typing on every React project I touch." },
           { "name": "JavaScript", "desc": "Base language of the front-end and the pipeline automations." },
@@ -201,7 +201,7 @@
         "desc": "Microservices, authentication and access control.",
         "items": [
           { "name": "Python", "desc": "Automation and data manipulation." },
-          { "name": "Node.js / Express", "desc": "Backend of the data dashboards at Deep Metrics, serving BigQuery and Supabase." },
+          { "name": "Node.js / Express", "desc": "Backend of the data dashboards I built at Deep Metrics, serving BigQuery and Supabase." },
           { "name": "Microservices", "desc": "The subject of my thesis: monolith-to-microservices migration." },
           { "name": "Keycloak", "desc": "Self-hosted identity provider I used to generate auth logic." },
           { "name": "RBAC", "desc": "Role-Based Access Control, implemented on top of Keycloak." }
@@ -214,14 +214,14 @@
           { "name": "GCP (Cloud Run, BigQuery)", "desc": "10 production ETL pipelines, data centralized in BigQuery." },
           { "name": "Docker", "desc": "Containerizing services and environments." },
           { "name": "Docker Compose", "desc": "Orchestrating multiple containers locally." },
-          { "name": "n8n", "desc": "The automation engine behind the Deep Metrics pipelines." }
+          { "name": "n8n", "desc": "The automation engine behind the pipelines I maintained at Deep Metrics." }
         ]
       },
       {
         "name": "Agents & AI",
         "desc": "Intelligent automation and AI applied to development.",
         "items": [
-          { "name": "Agent Development", "desc": "At Multimachine (Deep Metrics' sister company), building automated customer-service agents." },
+          { "name": "Agent Development", "desc": "At Multimachine (Deep Metrics' sister company), built automated customer-service agents." },
           { "name": "Claude Code", "desc": "Using AI as a copilot in day-to-day development." }
         ]
       },
@@ -230,7 +230,7 @@
         "desc": "Data modeling and querying.",
         "items": [
           { "name": "SQL", "desc": "Data modeling and queries for the dashboards." },
-          { "name": "BigQuery", "desc": "Data warehouse where I centralize and model data at Deep Metrics." },
+          { "name": "BigQuery", "desc": "Data warehouse where I centralized and modeled data at Deep Metrics." },
           { "name": "Supabase", "desc": "Postgres backend for the internal data platform at Deep Metrics." },
           { "name": "Firestore", "desc": "NoSQL database for real-time data." }
         ]
