@@ -2,263 +2,249 @@
   "meta": {
     "name": "Lucas Silva Mendes",
     "role": "Desenvolvedor Full-stack",
-    "tagline": "Front-end · Cloud · Dados",
     "available": "Disponível para novas oportunidades",
     "siteTitle": "Lucas Mendes — Portfólio",
-    "homeTitle": "Lucas Silva Mendes — Desenvolvedor Full-stack em São Carlos e Cataguases",
-    "siteDescription": "Lucas Silva Mendes, desenvolvedor full-stack (React, Next.js, Node.js) e engenheiro de dados em São Carlos (SP) e Cataguases (MG). Construo da interface ao dado: front-end, cloud, pipelines e back-end.",
+    "homeTitle": "Lucas Silva Mendes — Desenvolvedor Full-stack em Cataguases, MG",
+    "siteDescription": "Lucas Silva Mendes, desenvolvedor full-stack júnior formado em Engenharia da Computação pela UFSCar. React, Next.js e TypeScript no front-end; APIs REST, pipelines ETL na GCP e agentes de IA no back-end.",
     "ogAlt": "Lucas Silva Mendes — Desenvolvedor Full-stack",
-    "keywords": "Lucas Silva Mendes, desenvolvedor full-stack, desenvolvedor São Carlos, desenvolvedor Cataguases, programador São Carlos SP, programador Cataguases MG, engenheiro de software, engenheiro de dados, desenvolvedor React, Next.js, Node.js, desenvolvedor web Minas Gerais, desenvolvedor web São Paulo, freelancer desenvolvedor"
+    "keywords": "Lucas Silva Mendes, desenvolvedor full-stack, desenvolvedor full-stack júnior, desenvolvedor Cataguases, programador Cataguases MG, desenvolvedor Zona da Mata, engenheiro de software, desenvolvedor React, Next.js, TypeScript, Python, agentes de IA, LangChain, desenvolvedor web Minas Gerais"
   },
   "nav": {
-    "menu": "Menu",
-    "about": "Sobre",
-    "journey": "Trajetória",
     "projects": "Projetos",
     "skills": "Habilidades",
-    "soundOn": "Ativar som",
-    "soundOff": "Desativar som",
-    "open": "Abrir menu",
+    "journey": "Trajetória",
+    "contact": "Contato",
+    "menu": "Menu",
     "close": "Fechar",
-    "wheelHint": "SELECIONE UM DESTINO"
+    "home": "Voltar ao início"
   },
-  "about": {
-    "title": "Sobre",
-    "subtitle": "Quem está por trás do código",
-    "welcome": "Olá, seja bem-vindo",
-    "welcomeText": "Sou Lucas Silva Mendes, desenvolvedor full-stack que constrói da interface ao dado. Fique à vontade para explorar.",
-    "heroLine1": "Da interface",
-    "heroLine2": "ao dado.",
-    "heroLead": "Desenvolvedor full-stack que vai do front-end à engenharia de dados, ponta a ponta. React e Next.js na tela, pipelines e cloud por baixo.",
+  "hero": {
+    "wordFrom": "INTERFACE",
+    "wordTo": "DADO",
+    "wordLabel": "Da interface ao dado",
+    "role": "Desenvolvedor full-stack",
+    "cities": "Cataguases, MG",
+    "focus": "Front-end × Cloud × IA",
+    "stack": ["React", "Next.js", "TypeScript", "Python", "BigQuery"],
+    "meterFrom": "Interface",
+    "meterTo": "Dado",
+    "available": "Disponível",
+    "meterHint": "Role para descer a stack",
+    "degree": "Eng. da Computação · UFSCar",
+    "year": "2026",
+    "scroll": "Ver projetos ↓",
+    "photoAlt": "Lucas Silva Mendes sorrindo, de camisa polo listrada, com os braços cruzados"
+  },
+  "intro": {
+    "lead": "Sou <b>Lucas Silva Mendes</b>, desenvolvedor full-stack. Construo a tela em React e Next.js e <em>o que fica por baixo dela</em>: APIs REST, pipelines na GCP, modelagem no BigQuery e agentes de IA.",
     "ctaProjects": "Ver projetos",
     "ctaContact": "Vamos conversar",
-    "heroLocation": "São Carlos · Cataguases · Brasil",
-    "scrollHint": "Role para explorar",
-    "bioKicker": "O que eu faço",
-    "bio": [
-      { "title": "Front-end", "desc": "React, Next.js e TypeScript para interfaces complexas e responsivas." },
-      { "title": "Cloud & Dados", "desc": "Pipelines de ETL em produção na GCP, BigQuery e automação de integrações." },
-      { "title": "Back-end & Segurança", "desc": "Microsserviços, autenticação e controle de acesso com Keycloak e RBAC." },
-      { "title": "Visão de produto", "desc": "Da modelagem de dados até a tela do usuário, ponta a ponta." },
-      { "title": "Experiência real", "desc": "BIP-Brain (saúde) e plataformas de dados na Deep Metrics (2025–2026)." },
-      { "title": "Formação", "desc": "Eng. da Computação na UFSCar e base militar na EPCAR." }
-    ],
-    "stats": [
-      { "value": "10", "label": "Pipelines ETL em produção" },
-      { "value": "30+", "label": "Telas em React + Figma" },
-      { "value": "8+", "label": "Plataformas integradas" },
+    "figs": [
+      { "value": "10", "label": "pipelines de integração em produção" },
+      { "value": "30+", "label": "telas em React + TypeScript" },
       { "value": "2026", "label": "Eng. da Computação · UFSCar" }
-    ],
-    "focusLabel": "Áreas de atuação",
-    "focusHint": "Passe o mouse sobre uma área",
-    "attributes": [
-      { "label": "Front-end", "value": 92, "techs": ["React", "Next.js", "TypeScript", "JavaScript", "CSS"] },
-      { "label": "Cloud & Infra", "value": 84, "techs": ["GCP", "Cloud Run", "Docker", "n8n"] },
-      { "label": "Dados", "value": 78, "techs": ["SQL", "BigQuery", "Supabase", "Firestore"] },
-      { "label": "Back-end", "value": 68, "techs": ["Node.js", "Express", "Python", "Microsserviços"] },
-      { "label": "Segurança", "value": 72, "techs": ["Keycloak", "RBAC", "Autenticação"] },
-      { "label": "UX / Design", "value": 76, "techs": ["Figma", "Prototipação", "UI Responsiva"] }
+    ]
+  },
+  "projects": {
+    "kicker": "Projetos",
+    "title": "Trabalhos selecionados",
+    "github": "Mais no GitHub",
+    "items": [
+      {
+        "name": "BIP-Brain",
+        "status": "Em produção",
+        "live": true,
+        "description": "Plataforma que ajuda radiologistas e neurologistas a diagnosticar Alzheimer e Esclerose Múltipla a partir de imagens médicas. Construí o front-end: mais de 30 telas a partir do Figma, autenticação, cadastro e a integração com as APIs REST.",
+        "image": "/projects/bip-brain.png",
+        "imageAlt": "Página inicial da plataforma BIP-Brain",
+        "url": "https://www.brain.ufscar.br/pt",
+        "techs": ["Next.js", "React", "TypeScript", "Storybook", "Figma"]
+      },
+      {
+        "name": "Prodigium",
+        "status": "Em produção",
+        "live": true,
+        "description": "Assessoria que entrega sites e landing pages profissionais em até 15 dias úteis. Desenvolvi o front-end do site com Astro, com foco em performance e layout responsivo.",
+        "image": "/projects/prodigium.webp",
+        "imageAlt": "Página inicial do site da Prodigium",
+        "url": "https://prodigium.com.br/",
+        "techs": ["Astro", "JavaScript", "GA4"]
+      },
+      {
+        "name": "Segurança automática para microsserviços",
+        "status": "TCC",
+        "live": false,
+        "description": "Estudo da geração de código via js-distributor para autenticação e autorização: mecanismos com Keycloak e RBAC gerados automaticamente na migração de um monólito para microsserviços, com foco em propagação de contexto de segurança entre serviços. Orientação do Prof. Daniel Lucredio, UFSCar.",
+        "url": "https://repositorio.ufscar.br/items/0818b143-f555-4546-a606-356bbd25a061",
+        "linkLabel": "Ler no repositório da UFSCar",
+        "techs": ["Keycloak", "RBAC", "Microsserviços", "Geração de código"]
+      }
+    ]
+  },
+  "skills": {
+    "kicker": "Habilidades",
+    "title": "Stack & competências",
+    "hint": "Escolha uma área e passe o cursor ou toque em um nó para ver onde apliquei cada habilidade.",
+    "areaOf": "Área {n} de {total}",
+    "prev": "Área anterior",
+    "next": "Próxima área",
+    "categories": [
+      {
+        "name": "Front-end",
+        "icon": "code",
+        "desc": "Interfaces responsivas, do protótipo no Figma ao componente tipado.",
+        "items": [
+          { "name": "React", "desc": "Base das 30+ telas do BIP-Brain e da plataforma interna de dados na Deep Metrics." },
+          { "name": "Next.js", "desc": "Framework do BIP-Brain, da plataforma da Deep Metrics e deste portfólio." },
+          { "name": "TypeScript", "desc": "Tipagem estática em todos os projetos React." },
+          { "name": "HTML & CSS", "desc": "Layouts responsivos, pensados primeiro para o celular." },
+          { "name": "Astro", "desc": "Front-end de sites institucionais com foco em performance, como o da Prodigium." },
+          { "name": "Flutter", "desc": "Interfaces mobile multiplataforma." },
+          { "name": "Figma", "desc": "Protótipos e iteração de fluxos antes de escrever código." }
+        ]
+      },
+      {
+        "name": "Back-end & Segurança",
+        "icon": "shield",
+        "desc": "APIs, autenticação e controle de acesso.",
+        "items": [
+          { "name": "Python", "desc": "Processamento de dados e mapeamento da jornada do usuário na Deep Metrics." },
+          { "name": "Django", "desc": "Framework web em Python para back-end." },
+          { "name": "APIs REST", "desc": "Integração do front-end com back-ends e consumo de APIs de Meta Ads, Google Ads, GA4, HubSpot e RD Station." },
+          { "name": "Keycloak", "desc": "Provedor de identidade usado no TCC para gerar autenticação e autorização." },
+          { "name": "RBAC", "desc": "Controle de acesso por funções, gerado automaticamente sobre o Keycloak." },
+          { "name": "Microsserviços", "desc": "Tema do TCC: migração de monólito com propagação de contexto de segurança." }
+        ]
+      },
+      {
+        "name": "Dados & Cloud",
+        "icon": "cloud",
+        "desc": "Pipelines de integração, warehouse e tracking.",
+        "items": [
+          { "name": "Pipelines ETL", "desc": "10 pipelines de integração em produção na Deep Metrics." },
+          { "name": "Cloud Run", "desc": "Onde os pipelines rodam, na Google Cloud." },
+          { "name": "n8n", "desc": "Orquestração e automação dos fluxos de integração." },
+          { "name": "BigQuery", "desc": "Warehouse onde centralizei os dados e mapeei a jornada do primeiro acesso à conversão." },
+          { "name": "SQL", "desc": "Consultas e modelagem para insights de marketing." },
+          { "name": "GA4 & GTM", "desc": "Tracking de eventos com conversões enviadas em paralelo para GA4, Meta Ads, Google Ads e Microsoft Ads." }
+        ]
+      },
+      {
+        "name": "Agentes de IA",
+        "icon": "bot",
+        "desc": "Agentes de atendimento e IA aplicada ao desenvolvimento.",
+        "items": [
+          { "name": "LangChain / LangGraph", "desc": "Base dos agentes de IA para atendimento ao cliente que desenvolvi na Deep Metrics." },
+          { "name": "RAG", "desc": "Respostas apoiadas em bases de conhecimento." },
+          { "name": "Tool calling", "desc": "Agentes que chamam funções e ferramentas externas." },
+          { "name": "Claude Code", "desc": "Desenvolvimento assistido por IA para acelerar entregas, sempre com revisão." }
+        ]
+      },
+      {
+        "name": "Qualidade & Ferramentas",
+        "icon": "check",
+        "desc": "Testes, documentação e versionamento.",
+        "items": [
+          { "name": "Jest", "desc": "Testes automatizados em JavaScript e TypeScript." },
+          { "name": "Storybook", "desc": "Documentação dos componentes React do BIP-Brain." },
+          { "name": "Git", "desc": "Versionamento de todos os projetos." }
+        ]
+      },
+      {
+        "name": "Idiomas",
+        "icon": "lang",
+        "desc": "Para documentação e comunicação.",
+        "items": [
+          { "name": "Português", "desc": "Idioma nativo." },
+          { "name": "Inglês", "desc": "Intermediário: documentação técnica e comunicação no dia a dia." }
+        ]
+      }
     ]
   },
   "journey": {
-    "title": "Trajetória",
-    "subtitle": "Onde estive e o que entreguei",
-    "metaDescription": "Trajetória de Lucas Silva Mendes: engenharia de dados e desenvolvimento full-stack na Deep Metrics, front-end no BIP Group (UFSCar) e formação em Engenharia da Computação.",
-    "current": "Atual",
+    "kicker": "Trajetória",
+    "title": "Onde estive e o que entreguei",
     "items": [
       {
         "title": "Engenheiro de Dados & Desenvolvedor Full-stack (Estágio)",
         "org": "Deep Metrics",
         "tag": "Experiência",
-        "logo": "/institutions/deepmetrics.png",
         "photo": "/institutions/deepmetrics.png",
         "photoLogo": true,
         "period": "09/2025 – 06/2026",
         "lines": [
-          "10 pipelines de ETL em produção (n8n + Cloud Run) conectando 8+ plataformas de mídia e CRM (Meta, Google e Microsoft Ads, GA4, Bitrix24, HubSpot, Pipedrive e RD Station) ao BigQuery.",
-          "Tracking server-side com GTM enviando conversões em paralelo para GA4, Meta, Google e Microsoft Ads, com atribuição cross-channel e sinais melhores para os algoritmos de campanha.",
-          "Modelagem no BigQuery mapeando a jornada completa do cliente, do primeiro lead até a conversão no CRM.",
-          "Dashboards de marketing em JavaScript, HTML e CSS com Vite e Chart.js, substituindo os dashboards estáticos por uma interface dinâmica.",
-          "Back-end em Node/Express servindo os dados do BigQuery e do Supabase, com cache para performance.",
-          "Scripts em Python e SQL avançado para tratamento, enriquecimento e integração de dados entre sistemas."
+          "Mapeei a jornada completa do usuário, do primeiro acesso à conversão, com Python e BigQuery, gerando insights estratégicos de marketing.",
+          "Desenvolvi uma plataforma interna em React + TypeScript (Next.js) que substituiu dashboards estáticos por uma interface dinâmica integrada a serviços de dados via APIs.",
+          "Construí 10 pipelines de integração em produção (Cloud Run) consumindo APIs REST de Meta Ads, Google Ads, GA4, HubSpot, RD Station e outras plataformas.",
+          "Desenvolvi o front-end de sites institucionais com Astro, com foco em performance e layout responsivo.",
+          "Implementei tracking com GA4 e Google Tag Manager, enviando conversões em paralelo para GA4, Meta Ads, Google Ads e Microsoft Ads.",
+          "Desenvolvi agentes de IA para atendimento ao cliente com LangChain.",
+          "Usei desenvolvimento assistido por IA (Claude Code) para acelerar entregas e manter padrões de código, sempre com revisão."
         ]
       },
       {
         "title": "Desenvolvedor Front-end",
         "org": "BipGroup · UFSCar",
         "tag": "Experiência",
-        "logo": "/institutions/ufscar.png",
         "photo": "/projects/bip-brain.png",
         "period": "03/2024 – 09/2025",
         "lines": [
-          "30+ telas no Figma e em React + TypeScript para uma plataforma de diagnóstico médico por imagem.",
-          "Dois perfis de acesso (usuário e administrador), além da landing page e dos fluxos de autenticação e cadastro.",
-          "Integração completa com a API backend para envio e recebimento de dados da plataforma.",
-          "Sistema de cadastro, login e sessão de usuário.",
-          "Iteração de design em V1 → V2 antes de codar, com UX validada na prototipação e menos retrabalho.",
-          "Bolsa FAPESP de Treinamento Técnico em Desenvolvimento Web (pesquisa científica na UFSCar)."
+          "Construí mais de 30 telas em React + TypeScript com Next.js a partir de protótipos no Figma, cobrindo os perfis de usuário e administrador, landing page, autenticação e cadastro.",
+          "Desenvolvi componentes reutilizáveis, priorizando código simples, limpo e legível.",
+          "Integrei o front-end às APIs REST do back-end e implementei cadastro, login e sessão de usuário.",
+          "Documentei os componentes React com Storybook e versionei o trabalho com Git.",
+          "Bolsista FAPESP de Treinamento Técnico em Desenvolvimento Web."
         ]
       },
       {
-        "title": "Monitor — Introdução ao Pensamento Algorítmico",
+        "title": "Monitor de Introdução ao Pensamento Algorítmico",
         "org": "UFSCar",
         "tag": "Acadêmico",
-        "logo": "/institutions/ufscar.png",
         "photo": "/institutions/dc_ufscarjpg.jpg",
         "period": "Durante a graduação",
-        "lines": [
-          "Apoiei calouros nos fundamentos de lógica e programação."
-        ]
+        "lines": ["Apoiei calouros nos fundamentos de lógica e programação."]
       },
       {
         "title": "Engenharia da Computação",
-        "org": "UFSCar",
+        "org": "Universidade Federal de São Carlos",
         "tag": "Formação",
-        "logo": "/institutions/ufscar.png",
         "photo": "/institutions/ufscar.jpg",
         "period": "08/2021 – 07/2026",
         "lines": [
           "Bacharelado unindo software e hardware: algoritmos, redes e sistemas distribuídos.",
-          "TCC sobre geração automática de autenticação e autorização em microsserviços."
+          "TCC: \"Estudo da Geração de Código via JS-Distributor para Sistema de Autenticação e Autorização\", com orientação do Prof. Daniel Lucredio."
         ]
       },
       {
         "title": "EPCAR — Escola Preparatória de Cadetes do Ar",
         "org": "Força Aérea Brasileira · Barbacena/MG",
         "tag": "Formação",
-        "logo": "/institutions/epcar.svg",
         "photo": "/institutions/epcar.jpg",
         "period": "01/2017 – 12/2019",
-        "lines": [
-          "Ensino médio de excelência da FAB, voltado a formar futuros oficiais aviadores, com exatas e disciplina no limite."
-        ]
-      }
-    ]
-  },
-  "projects": {
-    "title": "Projetos",
-    "subtitle": "O que eu construí",
-    "githubTitle": "Mais no GitHub",
-    "githubText": "Código, experimentos e outros projetos.",
-    "githubCta": "Ver perfil",
-    "metaDescription": "Projetos de Lucas Silva Mendes: a plataforma médica BIP-Brain (React/TypeScript) e o TCC de geração automática de autenticação e autorização para microsserviços.",
-    "items": [
-      {
-        "name": "Prodigium",
-        "tag": "Site institucional · Prodigium",
-        "status": "Em produção",
-        "description": "Assessoria de criação de sites e landing pages que entrega sites profissionais em até 15 dias úteis. Atuei no desenvolvimento do site, da estrutura à interface.",
-        "image": "/projects/prodigium.webp",
-        "imageAlt": "Página inicial do site da Prodigium",
-        "url": "https://prodigium.com.br/",
-        "linkLabel": "Acessar o site",
-        "techs": ["Astro", "Node.js", "JavaScript"]
-      },
-      {
-        "name": "BIP-Brain",
-        "tag": "Plataforma Web · BipGroup (UFSCar)",
-        "status": "Em produção",
-        "description": "Plataforma que ajuda radiologistas e neurologistas a diagnosticar Alzheimer e Esclerose Múltipla a partir de imagens médicas. Atuei no front-end: 30+ telas, fluxos de autenticação e cadastro e toda a integração com a API.",
-        "image": "/projects/bip-brain.png",
-        "imageAlt": "Página inicial da plataforma BIP-Brain",
-        "url": "https://www.brain.ufscar.br/pt",
-        "linkLabel": "Acessar a plataforma",
-        "techs": ["Next.js", "React", "TypeScript", "Figma", "CSS"]
-      },
-      {
-        "name": "Segurança automática para microsserviços",
-        "tag": "Trabalho de Conclusão de Curso",
-        "status": "UFSCar · orientação Prof. Daniel Lucredio",
-        "description": "Como deixar microsserviços seguros sem configurar autenticação na mão? Meu TCC estende a ferramenta js-distributor para gerar controle de acesso (RBAC) com Keycloak automaticamente, a partir de uma configuração inicial, validado em sistemas de exemplo.",
-        "url": "https://repositorio.ufscar.br/items/0818b143-f555-4546-a606-356bbd25a061",
-        "linkLabel": "Ver no repositório da UFSCar",
-        "techs": ["Keycloak", "RBAC", "Microsserviços", "Geração de Código"]
-      }
-    ]
-  },
-  "skills": {
-    "title": "Habilidades",
-    "subtitle": "Stack & Competências",
-    "metaDescription": "Stack de Lucas Silva Mendes em front-end, cloud, dados e back-end: React, Next.js, TypeScript, Node.js, GCP/BigQuery, Docker, agentes de IA e mais.",
-    "treeHint": "Passe o mouse ou toque em um nó para ver onde apliquei cada habilidade",
-    "prevTab": "Área anterior",
-    "nextTab": "Próxima área",
-    "categories": [
-      {
-        "name": "Front-end",
-        "desc": "Interfaces complexas e responsivas, do protótipo ao código.",
-        "items": [
-          { "name": "React", "desc": "Base das interfaces do BipGroup (30+ telas) e da plataforma interna de dados que construí na Deep Metrics." },
-          { "name": "Next.js", "desc": "Framework React que uso para construir interfaces, inclusive este portfólio." },
-          { "name": "TypeScript", "desc": "Tipagem estática em todo projeto React que toco." },
-          { "name": "JavaScript", "desc": "Linguagem base do front-end e das automações de pipeline." },
-          { "name": "CSS (responsivo)", "desc": "Layouts que funcionam em qualquer tela." },
-          { "name": "Figma", "desc": "Prototipo e itero fluxos antes de escrever uma linha de código." }
-        ]
-      },
-      {
-        "name": "Back-end & Segurança",
-        "desc": "Microsserviços, autenticação e controle de acesso.",
-        "items": [
-          { "name": "Python", "desc": "Automação e manipulação de dados." },
-          { "name": "Node.js / Express", "desc": "Back-end dos dashboards de dados que construí na Deep Metrics, servindo BigQuery e Supabase." },
-          { "name": "Microsserviços", "desc": "Tema do meu TCC: migração de monólito para microsserviços." },
-          { "name": "Keycloak", "desc": "Provedor de identidade self-hosted que usei para gerar autenticação/autorização." },
-          { "name": "RBAC", "desc": "Controle de acesso baseado em funções, implementado sobre o Keycloak." }
-        ]
-      },
-      {
-        "name": "Cloud & Infra",
-        "desc": "Pipelines de dados e infraestrutura em nuvem.",
-        "items": [
-          { "name": "GCP (Cloud Run, BigQuery)", "desc": "10 pipelines de ETL em produção, dados centralizados no BigQuery." },
-          { "name": "Docker", "desc": "Containerização de serviços e ambientes." },
-          { "name": "Docker Compose", "desc": "Orquestração de múltiplos containers no ambiente local." },
-          { "name": "n8n", "desc": "Motor de automação por trás dos pipelines que mantive na Deep Metrics." }
-        ]
-      },
-      {
-        "name": "Agentes & IA",
-        "desc": "Automação inteligente e IA aplicada ao desenvolvimento.",
-        "items": [
-          { "name": "Criação de Agentes", "desc": "Na Multimachine (empresa irmã da Deep Metrics), construí agentes de atendimento automatizado." },
-          { "name": "Claude Code", "desc": "Uso de IA como copiloto no dia a dia de desenvolvimento." }
-        ]
-      },
-      {
-        "name": "Banco de Dados",
-        "desc": "Modelagem e consulta de dados.",
-        "items": [
-          { "name": "SQL", "desc": "Modelagem de dados e consultas para os dashboards." },
-          { "name": "BigQuery", "desc": "Data warehouse onde centralizei e modelei os dados na Deep Metrics." },
-          { "name": "Supabase", "desc": "Backend Postgres da plataforma interna de dados da Deep Metrics." },
-          { "name": "Firestore", "desc": "Banco NoSQL para dados em tempo real." }
-        ]
-      },
-      {
-        "name": "Idiomas",
-        "desc": "Para documentação e comunicação.",
-        "items": [
-          { "name": "Português (nativo)", "desc": "Idioma nativo." },
-          { "name": "Inglês (intermediário)", "desc": "Documentação técnica e comunicação no dia a dia." }
-        ]
+        "lines": ["Curso preparatório de cadetes do ar e ensino médio, com exatas e disciplina no limite."]
       }
     ]
   },
   "contact": {
-    "ctaTitle": "Vamos construir algo?",
-    "ctaText": "Aberto a oportunidades em times de produto. Escolha o melhor canal:",
-    "cv": "Currículo (PDF)",
-    "cvValue": "Baixar versão completa",
+    "kicker": "Contato",
+    "title": "Vamos construir",
+    "titleAccent": "algo?",
+    "text": "Aberto a oportunidades em times de produto. Escolha o melhor canal.",
     "email": "E-mail",
+    "copy": "Copiar",
+    "copied": "Copiado",
     "phone": "Telefone",
-    "location": "Localização",
-    "locationValue": "São Carlos, SP, Brasil",
     "linkedin": "LinkedIn",
-    "github": "GitHub"
+    "github": "GitHub",
+    "cv": "Currículo",
+    "cvValue": "Baixar PDF"
   },
   "footer": {
     "rights": "Lucas Silva Mendes",
-    "built": "Construído com Next.js · Inspirado na interface de Final Fantasy XV"
+    "place": "Cataguases, MG · Brasil"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "text": "O endereço que você abriu não existe ou mudou de lugar."
   }
 }

@@ -4,7 +4,7 @@ export const alt = 'Lucas Silva Mendes — Desenvolvedor Full-stack';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-// Branded 1200×630 social card on the navy/cyan theme.
+// Branded 1200×630 social card on the flat navy theme.
 export default async function OgImage() {
   return new ImageResponse(
     (
@@ -16,8 +16,7 @@ export default async function OgImage() {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '76px',
-          background:
-            'linear-gradient(145deg, #0a1124 0%, #101a32 55%, #0b1530 100%)',
+          background: '#0a1222',
           color: '#eef1f6',
           fontFamily: 'sans-serif',
         }}
@@ -28,12 +27,12 @@ export default async function OgImage() {
             display: 'flex',
             alignItems: 'center',
             gap: '18px',
-            color: '#7ee0ee',
+            color: '#6ea8dc',
             fontSize: 30,
             letterSpacing: 6,
           }}
         >
-          <div style={{ width: 58, height: 3, background: '#4fc3d6' }} />
+          <div style={{ width: 58, height: 3, background: '#6ea8dc' }} />
           PORTFÓLIO
         </div>
 
@@ -42,8 +41,8 @@ export default async function OgImage() {
           <div style={{ fontSize: 92, fontWeight: 600, lineHeight: 1.02 }}>
             Lucas Silva Mendes
           </div>
-          <div style={{ fontSize: 42, color: '#aebccd', marginTop: 20 }}>
-            Desenvolvedor Full-stack · Engenheiro de Dados
+          <div style={{ fontSize: 42, color: '#c3cddb', marginTop: 20 }}>
+            Desenvolvedor Full-stack · React, Next.js, Python
           </div>
         </div>
 
@@ -54,18 +53,18 @@ export default async function OgImage() {
             alignItems: 'center',
             gap: '18px',
             fontSize: 32,
-            color: '#9aa6b8',
+            color: '#8291a8',
           }}
         >
           <div
             style={{
               width: 18,
               height: 18,
-              background: '#4fc3d6',
+              background: '#6ea8dc',
               transform: 'rotate(45deg)',
             }}
           />
-          São Carlos, SP · Cataguases, MG, Brasil
+          Cataguases, MG · Brasil
         </div>
       </div>
     ),

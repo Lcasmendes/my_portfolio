@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Check } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import FocusRadar, { type Attribute } from '@/components/FocusRadar';
-import ContactCTA from '@/components/ContactCTA';
-import HeroLanding from '@/components/HeroLanding';
-import { Flourish } from '@/components/Ornament';
+import HeroPoster from '@/components/HeroPoster';
+import SkillTabs, { type SkillCategory } from '@/components/SkillTabs';
+import QuestLog, { type JourneyItem } from '@/components/QuestLog';
+import CopyEmail from '@/components/CopyEmail';
 import { pageMetadata } from '@/data/site';
+import { profile } from '@/data/profile';
 
 export async function generateMetadata({
   params,
@@ -16,88 +16,208 @@ export async function generateMetadata({
   return pageMetadata({ locale, path: '' });
 }
 
-export default async function AboutPage({
+interface ProjectItem {
+  name: string;
+  status: string;
+  live: boolean;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  url: string;
+  linkLabel?: string;
+  techs: string[];
+}
+
+const Arrow = () => (
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+    <path d="M4 12 12 4M6 4h6v6" />
+  </svg>
+);
+
+export default async function HomePage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations('about');
-  const attributes = t.raw('attributes') as Attribute[];
-  const bio = t.raw('bio') as { title: string; desc: string }[];
-  const stats = t.raw('stats') as { value: string; label: string }[];
+  const tIntro = await getTranslations('intro');
+  const tProj = await getTranslations('projects');
+  const tSkills = await getTranslations('skills');
+  const tJourney = await getTranslations('journey');
+  const tContact = await getTranslations('contact');
+
+  const figs = tIntro.raw('figs') as { value: string; label: string }[];
+  const projects = tProj.raw('items') as ProjectItem[];
+  const categories = tSkills.raw('categories') as SkillCategory[];
+  const journey = tJourney.raw('items') as JourneyItem[];
+  const cvHref = `/cv/Lucas_Mendes_CV_${locale === 'en' ? 'en' : 'pt'}.pdf`;
 
   return (
-    <div>
-      {/* ---- Hero — full-bleed immersive landing with scroll-driven exit ---- */}
-      <HeroLanding />
+    <>
+      <HeroPoster />
 
-      {/* ---- What I do — open editorial list ---- */}
-      <section className="mt-20 sm:mt-28">
-        <div>
-          <div className="mb-7 flex items-center gap-4">
-            <span className="text-xs uppercase tracking-widest2 text-accent">
-              {t('bioKicker')}
-            </span>
-            <span className="h-px flex-1 bg-frost-line" />
-          </div>
-          <div className="grid gap-x-10 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
-            {bio.map((f, i) => (
-              <div key={f.title} className="group relative">
-                <span className="font-display text-sm text-accent/70">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="mt-1 flex items-center gap-2 font-display text-base font-medium tracking-wide text-white">
-                  <Check size={14} className="text-accent" />
-                  {f.title}
-                </h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-frost-soft/80">
-                  {f.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---- Stats band — big open numbers ---- */}
-      <section className="mt-20 grid grid-cols-2 gap-y-10 border-y border-frost/15 py-10 sm:mt-28 sm:grid-cols-4">
-        {stats.map((s, i) => (
-          <div
-            key={s.label}
-            className={`px-4 sm:px-6 ${
-              i > 0 ? 'sm:border-l sm:border-frost/15' : ''
-            }`}
-          >
-            <p className="font-display text-[clamp(2.25rem,5vw,3.5rem)] font-medium leading-none text-white">
-              {s.value}
-            </p>
-            <p className="mt-2 text-xs leading-snug tracking-wide text-frost-dim">
-              {s.label}
-            </p>
-          </div>
-        ))}
-      </section>
-
-      {/* ---- Focus radar — de-boxed ---- */}
-      <section className="mt-20 sm:mt-28">
-        <div className="mb-8">
-          <p className="mb-2 text-xs uppercase tracking-widest2 text-accent">
-            {t('focusLabel')}
+      <section className="intro">
+        <div className="wrap">
+          <p className="lead">
+            {tIntro.rich('lead', {
+              b: (c) => <b>{c}</b>,
+              em: (c) => <em>{c}</em>,
+            })}
           </p>
-          <Flourish />
+          <div className="intro-side">
+            <div className="figs">
+              {figs.map((f) => (
+                <div className="fig" key={f.label}>
+                  <b>{f.value}</b>
+                  <span>{f.label}</span>
+                </div>
+              ))}
+            </div>
+            <div className="ctas">
+              <a className="btn primary" href="#projects">
+                {tIntro('ctaProjects')}
+              </a>
+              <a className="btn" href="#contact">
+                {tIntro('ctaContact')}
+                <Arrow />
+              </a>
+            </div>
+          </div>
         </div>
-        <FocusRadar
-          label={t('focusLabel')}
-          hint={t('focusHint')}
-          attributes={attributes}
-        />
       </section>
 
-      <div className="mt-20 sm:mt-28">
-        <ContactCTA />
-      </div>
-    </div>
+      <section className="sec" id="projects" style={{ paddingTop: 'clamp(56px, 8vw, 96px)' }}>
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="kicker">{tProj('kicker')}</span>
+            <h2>{tProj('title')}</h2>
+          </div>
+          <div className="work">
+            {projects.map((p) =>
+              p.image ? (
+                <a className="card" key={p.name} href={p.url} target="_blank" rel="noopener noreferrer">
+                  <div className="shot">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={p.image} alt={p.imageAlt ?? p.name} loading="lazy" />
+                  </div>
+                  <div className="card-body">
+                    <div className="card-top">
+                      <h3>{p.name}</h3>
+                      <span className="st">
+                        {p.live && <i />}
+                        {p.status}
+                      </span>
+                    </div>
+                    <p>{p.description}</p>
+                    <div className="techs">
+                      {p.techs.map((tech) => (
+                        <span key={tech}>{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+                </a>
+              ) : (
+                <a className="card wide" key={p.name} href={p.url} target="_blank" rel="noopener noreferrer">
+                  <pre className="snippet" aria-hidden="true">
+                    <em># config</em>
+                    {'\n'}
+                    <b>services</b>:{'\n'}
+                    {'  '}
+                    <b>orders</b>:{'\n'}
+                    {'    roles: [admin, seller]\n'}
+                    {'    routes:\n'}
+                    {'      POST   /orders  → seller\n'}
+                    {'      DELETE /orders  → admin\n'}
+                    <em># → Keycloak realm, clients & policies</em>
+                  </pre>
+                  <div className="card-body">
+                    <div className="card-top">
+                      <h3>{p.name}</h3>
+                      <span className="st">{p.status}</span>
+                    </div>
+                    <p>{p.description}</p>
+                    <div className="techs">
+                      {p.techs.map((tech) => (
+                        <span key={tech}>{tech}</span>
+                      ))}
+                    </div>
+                    {p.linkLabel && (
+                      <span className="go">
+                        {p.linkLabel}
+                        <Arrow />
+                      </span>
+                    )}
+                  </div>
+                </a>
+              ),
+            )}
+          </div>
+        </div>
+      </section>
+
+      <section className="sec" id="skills" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="kicker">{tSkills('kicker')}</span>
+            <h2>{tSkills('title')}</h2>
+            <p>{tSkills('hint')}</p>
+          </div>
+          <SkillTabs categories={categories} />
+        </div>
+      </section>
+
+      <section className="sec" id="journey" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="kicker">{tJourney('kicker')}</span>
+            <h2>{tJourney('title')}</h2>
+          </div>
+          <QuestLog items={journey} />
+        </div>
+      </section>
+
+      <section className="sec" id="contact" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="contact-box">
+            <div>
+              <span className="kicker">{tContact('kicker')}</span>
+              <h2 style={{ marginTop: 18 }}>
+                {tContact('title')} <span>{tContact('titleAccent')}</span>
+              </h2>
+              <p className="sub">{tContact('text')}</p>
+            </div>
+            <div className="links">
+              <CopyEmail
+                email={profile.email}
+                label={tContact('email')}
+                copy={tContact('copy')}
+                copied={tContact('copied')}
+              />
+              <a className="link" href={profile.linkedin.href} target="_blank" rel="noopener noreferrer">
+                <span className="k">{tContact('linkedin')}</span>
+                <span className="v">{profile.linkedin.label}</span>
+                <span className="a">↗</span>
+              </a>
+              <a className="link" href={profile.github.href} target="_blank" rel="noopener noreferrer">
+                <span className="k">{tContact('github')}</span>
+                <span className="v">{profile.github.label}</span>
+                <span className="a">↗</span>
+              </a>
+              <a className="link" href={profile.phoneHref}>
+                <span className="k">{tContact('phone')}</span>
+                <span className="v">{profile.phone}</span>
+                <span className="a">↗</span>
+              </a>
+              <a className="link" href={cvHref} download>
+                <span className="k">{tContact('cv')}</span>
+                <span className="v">{tContact('cvValue')}</span>
+                <span className="a">PDF</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

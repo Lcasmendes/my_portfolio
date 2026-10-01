@@ -58,8 +58,7 @@ export function pageMetadata({
   };
 }
 
-// schema.org Person — drives rich results and local relevance (São Carlos/SP
-// and Cataguases/MG).
+// schema.org Person — drives rich results and local relevance (Cataguases/MG).
 export function personJsonLd(jobTitle: string) {
   return {
     '@context': 'https://schema.org',
@@ -78,40 +77,22 @@ export function personJsonLd(jobTitle: string) {
       'React',
       'Next.js',
       'TypeScript',
-      'Node.js',
       'JavaScript',
       'Python',
+      'Django',
+      'REST APIs',
       'BigQuery',
       'ETL',
       'Google Cloud Platform',
+      'LangChain',
+      'AI agents',
       'Full-stack development',
-      'Data Engineering',
     ],
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'São Carlos',
-      addressRegion: 'SP',
+      addressLocality: 'Cataguases',
+      addressRegion: 'MG',
       addressCountry: 'BR',
     },
-    workLocation: [
-      {
-        '@type': 'Place',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'São Carlos',
-          addressRegion: 'SP',
-          addressCountry: 'BR',
-        },
-      },
-      {
-        '@type': 'Place',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Cataguases',
-          addressRegion: 'MG',
-          addressCountry: 'BR',
-        },
-      },
-    ],
   };
 }

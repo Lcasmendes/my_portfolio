@@ -12,11 +12,3 @@ export const profile = {
     href: 'https://github.com/Lcasmendes',
   },
 } as const;
-
-// Order of sections used by the radial navigation wheel.
-export const sections = [
-  { key: 'about', href: '/' },
-  { key: 'journey', href: '/journey' },
-  { key: 'projects', href: '/projects' },
-  { key: 'skills', href: '/skills' },
-] as const;

@@ -1,20 +1,7 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useSound } from './sound/SoundProvider';
-import {
-  Code2,
-  ShieldCheck,
-  Cloud,
-  Bot,
-  Database,
-  Languages,
-  Sparkles,
-  ChevronLeft,
-  ChevronRight,
-  type LucideIcon,
-} from 'lucide-react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useTranslations } from 'next-intl';
 
 export interface SkillItem {
   name: string;
@@ -22,510 +9,304 @@ export interface SkillItem {
 }
 export interface SkillCategory {
   name: string;
+  icon: string;
   desc: string;
   items: SkillItem[];
 }
 
-interface SkillTabsProps {
-  categories: SkillCategory[];
-  hint: string;
-  prevLabel: string;
-  nextLabel: string;
-}
+// Line icons (lucide shapes) keyed by the `icon` field in the message files.
+const ICONS: Record<string, ReactNode> = {
+  code: <path d="m16 18 6-6-6-6M8 6l-6 6 6 6" />,
+  shield: (
+    <>
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="m9 12 2 2 4-4" />
+    </>
+  ),
+  cloud: <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />,
+  bot: (
+    <>
+      <rect x="3" y="11" width="18" height="10" rx="2" />
+      <path d="M12 7v4M8 16h.01M16 16h.01" />
+      <circle cx="12" cy="5" r="2" />
+    </>
+  ),
+  check: (
+    <>
+      <path d="M21 10.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+      <path d="m9 11 3 3L22 4" />
+    </>
+  ),
+  lang: <path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6" />,
+};
 
-// Tab icons, matched to the category order in the message files.
-const TAB_ICONS: LucideIcon[] = [
-  Code2, // Front-end
-  ShieldCheck, // Back-end & Security
-  Cloud, // Cloud & Infra
-  Bot, // Agents & AI
-  Database, // Database
-  Languages, // Languages
-];
+const ICON_PROPS = {
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.7,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
+} as const;
 
-// ---- Constellation layout (one per category) ------------------------------
-// Horizontal radial on desktop; vertical tree on mobile (taller, readable).
-interface PlacedNode {
-  id: string;
+interface Node {
   x: number;
   y: number;
-  name: string;
-  desc: string;
+  item: SkillItem;
   side: 'left' | 'right';
 }
-
 interface Layout {
   W: number;
   H: number;
   hubX: number;
   hubY: number;
-  nodes: PlacedNode[];
   vertical: boolean;
-  spineBottom: number;
+  nodes: Node[];
 }
 
+// Horizontal radial layout on desktop; vertical tree on narrow screens.
 function buildLayout(items: SkillItem[], vertical: boolean): Layout {
   const k = items.length;
-
   if (vertical) {
     const W = 640;
     const hubX = 320;
-    const hubY = 92;
-    const topY = 210;
-    const gap = 116;
-    const H = topY + (k - 1) * gap + 120;
-    const nodes: PlacedNode[] = items.map((it, i) => {
-      const dir = i % 2 === 0 ? -1 : 1;
-      return {
-        id: `v-${i}`,
-        x: hubX + dir * 132,
-        y: topY + i * gap,
-        name: it.name,
-        desc: it.desc,
-        side: dir > 0 ? 'right' : 'left',
-      };
-    });
+    const hubY = 80;
+    const topY = 200;
+    const gap = 110;
     return {
       W,
-      H,
+      H: topY + (k - 1) * gap + 90,
       hubX,
       hubY,
-      nodes,
-      vertical: true,
-      spineBottom: nodes.length ? nodes[nodes.length - 1].y : hubY,
+      vertical,
+      nodes: items.map((item, i) => {
+        const d = i % 2 ? 1 : -1;
+        return { x: hubX + d * 140, y: topY + i * gap, item, side: d > 0 ? 'right' : 'left' };
+      }),
     };
   }
-
   const W = 1000;
-  const H = 520;
+  const H = 480;
   const CX = W / 2;
   const CY = H / 2;
-  const rightCount = Math.ceil(k / 2);
-  const rightItems = items.slice(0, rightCount);
-  const leftItems = items.slice(rightCount);
-  const nodes: PlacedNode[] = [];
-  const place = (arr: SkillItem[], dir: 1 | -1) => {
-    const m = arr.length;
-    arr.forEach((it, j) => {
-      const gapY = m > 1 ? Math.min(120, (H - 170) / (m - 1)) : 0;
-      const offY = (j - (m - 1) / 2) * gapY;
-      const baseX = 200 + (j % 2) * 22;
+  const rc = Math.ceil(k / 2);
+  const nodes: Node[] = [];
+  const place = (arr: SkillItem[], dir: 1 | -1) =>
+    arr.forEach((item, j) => {
+      const m = arr.length;
+      const gy = m > 1 ? Math.min(118, (H - 150) / (m - 1)) : 0;
       nodes.push({
-        id: `${dir > 0 ? 'r' : 'l'}-${j}`,
-        x: CX + dir * baseX,
-        y: CY + offY,
-        name: it.name,
-        desc: it.desc,
+        x: CX + dir * (210 + (j % 2) * 24),
+        y: CY + (j - (m - 1) / 2) * gy,
+        item,
         side: dir > 0 ? 'right' : 'left',
       });
     });
-  };
-  place(rightItems, 1);
-  place(leftItems, -1);
-  return { W, H, hubX: CX, hubY: CY, nodes, vertical: false, spineBottom: CY };
+  place(items.slice(0, rc), 1);
+  place(items.slice(rc), -1);
+  return { W, H, hubX: CX, hubY: CY, vertical, nodes };
 }
 
-function edgePath(L: Layout, n: PlacedNode) {
-  if (L.vertical) {
-    const mx = (L.hubX + n.x) / 2;
-    return `M ${L.hubX} ${n.y} C ${mx} ${n.y}, ${mx} ${n.y}, ${n.x} ${n.y}`;
-  }
-  const mx = (L.hubX + n.x) / 2;
-  return `M ${L.hubX} ${L.hubY} C ${mx} ${L.hubY}, ${mx} ${n.y}, ${n.x} ${n.y}`;
-}
+const BLUE = '#6ea8dc';
 
-export default function SkillTabs({
-  categories,
-  hint,
-  prevLabel,
-  nextLabel,
-}: SkillTabsProps) {
-  const { play } = useSound();
-  const [activeTab, setActiveTab] = useState(0);
-  const [hovered, setHovered] = useState<string | null>(null);
-  const [locked, setLocked] = useState<string | null>(null);
+export default function SkillTabs({ categories }: { categories: SkillCategory[] }) {
+  const t = useTranslations('skills');
+  const [active, setActive] = useState(0);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [locked, setLocked] = useState<number | null>(null);
+  const [vertical, setVertical] = useState(false);
 
-  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)');
-    const u = () => setIsMobile(mq.matches);
-    u();
-    mq.addEventListener('change', u);
-    return () => mq.removeEventListener('change', u);
+    const update = () => setVertical(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
   }, []);
 
-  const category = categories[activeTab];
-  const layout = useMemo(
-    () => buildLayout(category.items, isMobile),
-    [category, isMobile],
-  );
-  const nodes = layout.nodes;
+  const category = categories[active];
+  const layout = useMemo(() => buildLayout(category.items, vertical), [category, vertical]);
+  const focus = hovered ?? locked;
+  const focusItem = focus !== null ? category.items[focus] : null;
 
-  const activeId = hovered ?? locked;
-  const activeNode = activeId ? nodes.find((n) => n.id === activeId) ?? null : null;
-
-  const goTo = (i: number) => {
-    const next = (i + categories.length) % categories.length;
-    play('select');
-    setActiveTab(next);
+  const go = (i: number) => {
+    setActive((i + categories.length) % categories.length);
     setHovered(null);
     setLocked(null);
   };
 
-  // Arrow keys switch the active area (yield to the radial menu when it's open).
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (document.body.dataset.radialOpen) return;
-      const tag = (e.target as HTMLElement)?.tagName;
-      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        goTo(activeTab + 1);
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        goTo(activeTab - 1);
-      }
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab, categories.length]);
-
-  const HubIcon = TAB_ICONS[activeTab] ?? Sparkles;
+  const ringY = layout.vertical ? layout.H / 2 : layout.hubY;
+  const fs = layout.vertical ? 21 : 16;
 
   return (
-    <div className="lg:flex lg:h-full lg:flex-col">
-      {/* ---- Tab bar (FFXV Ascension style) ---- */}
-      <div className="hud-panel mb-5 flex shrink-0 items-center gap-2 px-2 py-2 lg:mb-4 sm:px-3">
-        <button
-          type="button"
-          aria-label={prevLabel}
-          onClick={() => goTo(activeTab - 1)}
-          className="shrink-0 rounded-sm p-1.5 text-frost-dim transition hover:bg-white/5 hover:text-frost"
-        >
-          <ChevronLeft size={20} />
+    <div>
+      <div className="tabbar">
+        <button type="button" className="arrowbtn" aria-label={t('prev')} onClick={() => go(active - 1)}>
+          <svg width="18" height="18" viewBox="0 0 24 24" {...ICON_PROPS} strokeWidth={1.8}>
+            <path d="m15 18-6-6 6-6" />
+          </svg>
         </button>
+        <div
+          className="tabs"
+          role="tablist"
+          aria-label={t('title')}
+          onKeyDown={(e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+              e.preventDefault();
+              const next = (active + (e.key === 'ArrowRight' ? 1 : -1) + categories.length) % categories.length;
+              go(next);
+              document.getElementById(`skill-tab-${next}`)?.focus();
+            }
+          }}
+        >
+          {categories.map((c, i) => (
+            <button
+              key={c.name}
+              id={`skill-tab-${i}`}
+              type="button"
+              role="tab"
+              className="tab"
+              title={c.name}
+              aria-selected={i === active}
+              tabIndex={i === active ? 0 : -1}
+              onClick={() => go(i)}
+            >
+              <svg viewBox="0 0 24 24" {...ICON_PROPS}>
+                {ICONS[c.icon]}
+              </svg>
+              <span className="tl">{c.name}</span>
+            </button>
+          ))}
+        </div>
+        <button type="button" className="arrowbtn" aria-label={t('next')} onClick={() => go(active + 1)}>
+          <svg width="18" height="18" viewBox="0 0 24 24" {...ICON_PROPS} strokeWidth={1.8}>
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
+      </div>
 
-        <div className="flex flex-1 items-center justify-between gap-1" role="tablist">
-          {categories.map((cat, i) => {
-            const Icon = TAB_ICONS[i] ?? Sparkles;
-            const active = i === activeTab;
+      <div className="sk-detail" aria-live="polite">
+        <div className="swap" key={`${active}-${focus ?? 'cat'}`}>
+          <span className="lbl">
+            {focusItem ? category.name : t('areaOf', { n: String(active + 1).padStart(2, '0'), total: categories.length })}
+          </span>
+          <h3>{focusItem ? focusItem.name : category.name}</h3>
+          <p>{focusItem ? focusItem.desc : category.desc}</p>
+        </div>
+      </div>
+
+      <div className="constellation">
+        <svg viewBox={`0 0 ${layout.W} ${layout.H}`} role="img" aria-label={category.name}>
+          <circle cx={layout.hubX} cy={ringY} r={230} fill="none" stroke="rgba(150,175,210,0.08)" />
+          <circle cx={layout.hubX} cy={ringY} r={150} fill="none" stroke="rgba(150,175,210,0.08)" />
+          <rect x={0} y={0} width={layout.W} height={layout.H} fill="transparent" onClick={() => setLocked(null)} />
+          {layout.vertical && layout.nodes.length > 0 && (
+            <line
+              x1={layout.hubX}
+              y1={layout.hubY}
+              x2={layout.hubX}
+              y2={layout.nodes[layout.nodes.length - 1].y}
+              stroke="rgba(150,175,210,0.35)"
+              strokeWidth={1.2}
+            />
+          )}
+
+          {layout.nodes.map((n, i) => {
+            const mx = (layout.hubX + n.x) / 2;
+            const d = layout.vertical
+              ? `M ${layout.hubX} ${n.y} L ${n.x} ${n.y}`
+              : `M ${layout.hubX} ${layout.hubY} C ${mx} ${layout.hubY}, ${mx} ${n.y}, ${n.x} ${n.y}`;
+            const on = focus === i;
             return (
-              <button
-                key={cat.name}
-                role="tab"
-                aria-selected={active}
-                aria-label={cat.name}
-                title={cat.name}
-                onClick={() => goTo(i)}
-                className={`group relative flex flex-1 items-center justify-center rounded-sm px-1 py-2.5 transition-all ${
-                  active
-                    ? 'text-white'
-                    : 'text-frost-dim hover:bg-white/[0.04] hover:text-frost-soft'
-                }`}
-              >
-                {active && (
-                  <motion.span
-                    layoutId="skillTabActive"
-                    className="absolute inset-0 rounded-sm border border-accent/50 bg-accent/10 shadow-glow-accent"
-                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                  />
-                )}
-                <Icon
-                  size={22}
-                  className={`relative z-10 transition-transform ${
-                    active ? 'scale-110' : 'group-hover:scale-105'
-                  }`}
-                />
-                {/* selected indicator chevron */}
-                {active && (
-                  <motion.span
-                    layoutId="skillTabPointer"
-                    className="absolute -bottom-[10px] left-1/2 z-10 h-1.5 w-1.5 -translate-x-1/2 rotate-45 bg-accent shadow-glow-accent-strong"
-                  />
-                )}
-              </button>
+              <path
+                key={`e-${i}`}
+                d={d}
+                fill="none"
+                strokeLinecap="round"
+                stroke={on ? BLUE : 'rgba(150,175,210,0.35)'}
+                strokeWidth={on ? 2 : 1.2}
+              />
             );
           })}
-        </div>
 
-        <button
-          type="button"
-          aria-label={nextLabel}
-          onClick={() => goTo(activeTab + 1)}
-          className="shrink-0 rounded-sm p-1.5 text-frost-dim transition hover:bg-white/5 hover:text-frost"
-        >
-          <ChevronRight size={20} />
-        </button>
-      </div>
-
-      {/* ---- Reactive detail header ---- */}
-      <div className="hud-panel mb-6 min-h-[112px] shrink-0 px-5 py-4 lg:mb-4">
-        <p className="text-[0.65rem] uppercase tracking-widest2 text-frost-dim">
-          {activeNode ? category.name : hint}
-        </p>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`${activeTab}-${activeNode?.id ?? 'cat'}`}
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.22 }}
-          >
-            <h2 className="mt-1 font-display text-xl tracking-wide text-white">
-              {activeNode ? activeNode.name : category.name}
-            </h2>
-            <p className="mt-1 text-sm leading-relaxed text-frost-soft/90">
-              {activeNode ? activeNode.desc : category.desc}
-            </p>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* ---- Constellation ---- */}
-      <div className="mx-auto w-full max-w-5xl lg:flex lg:min-h-0 lg:flex-1 lg:items-center lg:justify-center">
-        <svg
-          viewBox={`0 0 ${layout.W} ${layout.H}`}
-          className="h-auto w-full lg:h-full lg:max-h-full"
-          role="img"
-          aria-label={category.name}
-        >
-          <defs>
-            <radialGradient id="hubFill2" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#eef1f6" />
-              <stop offset="45%" stopColor="#aebccd" />
-              <stop offset="100%" stopColor="#243044" />
-            </radialGradient>
-            <radialGradient id="coreFill2" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#ffffff" />
-              <stop offset="60%" stopColor="#d4dbe6" />
-              <stop offset="100%" stopColor="#6e7888" />
-            </radialGradient>
-            <filter id="soft2" x="-80%" y="-80%" width="260%" height="260%">
-              <feGaussianBlur stdDeviation="6" />
-            </filter>
-          </defs>
-
-          {/* faint ornamental backdrop */}
-          <g opacity={0.1} stroke="#aebccd" fill="none">
-            <circle cx={layout.hubX} cy={layout.vertical ? layout.H / 2 : layout.hubY} r={230} strokeWidth={1} />
-            <circle cx={layout.hubX} cy={layout.vertical ? layout.H / 2 : layout.hubY} r={150} strokeWidth={1} />
+          <g transform={`translate(${layout.hubX} ${layout.hubY})`}>
+            <circle r={40} fill="none" stroke="rgba(150,175,210,0.3)" strokeDasharray="2 8" />
+            <circle r={30} fill="#eef1f6" />
+            <g transform="translate(-13 -13) scale(1.0833)" {...ICON_PROPS} stroke="#0a1222">
+              {ICONS[category.icon]}
+            </g>
           </g>
 
-          <rect
-            x={0}
-            y={0}
-            width={layout.W}
-            height={layout.H}
-            fill="transparent"
-            onClick={() => setLocked(null)}
-          />
-
-          {/* tab content fades/re-keys on switch */}
-          <motion.g
-            key={activeTab}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.35 }}
-          >
-            {/* vertical spine (mobile) */}
-            {layout.vertical && (
-              <>
-                <line
-                  x1={layout.hubX}
-                  y1={layout.hubY}
-                  x2={layout.hubX}
-                  y2={layout.spineBottom}
-                  stroke="#aebccd"
-                  strokeWidth={4}
-                  opacity={0.18}
-                  filter="url(#soft2)"
-                />
-                <line
-                  x1={layout.hubX}
-                  y1={layout.hubY}
-                  x2={layout.hubX}
-                  y2={layout.spineBottom}
-                  stroke="#aebccd"
-                  strokeWidth={1.4}
-                  opacity={0.5}
-                />
-              </>
-            )}
-
-            {/* edges */}
-            {nodes.map((n, i) => {
-              const active = activeId === n.id;
-              const d = edgePath(layout, n);
-              return (
-                <g key={`edge-${n.id}`}>
-                  <path
-                    d={d}
-                    fill="none"
-                    stroke={active ? '#4fc3d6' : '#aebccd'}
-                    strokeWidth={active ? 7 : 4}
-                    opacity={active ? 0.6 : 0.18}
-                    filter="url(#soft2)"
-                  />
-                  <motion.path
-                    d={d}
-                    fill="none"
-                    stroke={active ? '#7ee0ee' : '#aebccd'}
-                    strokeWidth={active ? 2.4 : 1.4}
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: active ? 1 : 0.55 }}
-                    transition={{
-                      pathLength: { duration: 0.6, delay: 0.1 + i * 0.05 },
-                      opacity: { duration: 0.3 },
-                    }}
-                  />
-                </g>
-              );
-            })}
-
-            {/* central hub */}
-            <g transform={`translate(${layout.hubX} ${layout.hubY})`}>
-              <motion.circle
-                r={42}
-                fill="#aebccd"
-                filter="url(#soft2)"
-                style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
-                animate={{ opacity: [0.18, 0.4, 0.18], scale: [0.95, 1.08, 0.95] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
-              <motion.circle
-                r={42}
-                fill="none"
-                stroke="#aebccd"
-                strokeWidth={1}
-                strokeDasharray="2 10"
-                opacity={0.6}
-                style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-              />
-              <circle r={34} fill="none" stroke="#eef1f6" strokeWidth={2} opacity={0.85} />
-              <circle r={26} fill="url(#hubFill2)" />
-              {/* category icon */}
-              <HubIcon x={-15} y={-15} width={30} height={30} color="#0a1124" />
-            </g>
-
-            {/* skill nodes */}
-            {nodes.map((n, i) => {
-              const active = activeId === n.id;
-              return (
-                <motion.g
-                  key={n.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.15 + i * 0.06 }}
-                  style={{ cursor: 'pointer' }}
-                  tabIndex={0}
-                  onMouseEnter={() => {
-                    play('hover');
-                    setHovered(n.id);
-                  }}
-                  onMouseLeave={() => setHovered(null)}
-                  onFocus={() => setHovered(n.id)}
-                  onBlur={() => setHovered(null)}
-                  onClick={() => {
-                    play('select');
-                    setLocked((c) => (c === n.id ? null : n.id));
-                  }}
-                >
-                  <g transform={`translate(${n.x} ${n.y})`}>
-                    {active && (
-                      <motion.circle
-                        r={22}
-                        fill="#4fc3d6"
-                        filter="url(#soft2)"
-                        style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
-                        animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.95, 1.15, 0.95] }}
-                        transition={{ duration: 2, repeat: Infinity }}
+          {layout.nodes.map((n, i) => {
+            const on = focus === i;
+            const w = n.item.name.length * fs * 0.56 + 20;
+            const rx = n.side === 'right' ? 24 : -(24 + w);
+            return (
+              <g
+                key={`${active}-${n.item.name}`}
+                className="node"
+                tabIndex={0}
+                role="button"
+                aria-label={n.item.name}
+                aria-pressed={locked === i}
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+                onFocus={() => setHovered(i)}
+                onBlur={() => setHovered(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLocked((c) => (c === i ? null : i));
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setLocked((c) => (c === i ? null : i));
+                  }
+                }}
+              >
+                <g transform={`translate(${n.x} ${n.y})`}>
+                  <circle r={26} fill="transparent" />
+                  <circle r={14} fill="#0a1222" stroke={on ? BLUE : '#8fa3bf'} strokeWidth={1.5} />
+                  <circle r={5} fill={on ? BLUE : '#c3cddb'} />
+                  {layout.vertical ? (
+                    <text
+                      x={0}
+                      y={42}
+                      textAnchor="middle"
+                      fontSize={fs}
+                      fill={on ? '#eef1f6' : '#9fb0c6'}
+                      fontWeight={on ? 600 : 400}
+                    >
+                      {n.item.name}
+                    </text>
+                  ) : (
+                    <>
+                      <rect
+                        x={rx}
+                        y={-fs / 2 - 7}
+                        width={w}
+                        height={fs + 14}
+                        rx={7}
+                        fill={on ? '#1b2c4f' : 'transparent'}
                       />
-                    )}
-                    <circle r={26} fill="transparent" />
-                    <circle
-                      r={15}
-                      fill="none"
-                      stroke={active ? '#7ee0ee' : '#aebccd'}
-                      strokeWidth={1.5}
-                      opacity={active ? 1 : 0.7}
-                    />
-                    <circle r={8} fill="url(#coreFill2)" opacity={active ? 1 : 0.85} />
-                    <circle r={2.6} fill={active ? '#7ee0ee' : '#ffffff'} />
-                    {layout.vertical ? (
                       <text
-                        x={0}
-                        y={40}
-                        textAnchor="middle"
-                        fontFamily="var(--font-body), sans-serif"
-                        fontSize={22}
-                        fontWeight={active ? 700 : 400}
-                        fill={active ? '#ffffff' : '#9aa6b8'}
+                        x={n.side === 'right' ? 34 : -34}
+                        y={1}
+                        textAnchor={n.side === 'right' ? 'start' : 'end'}
+                        dominantBaseline="middle"
+                        fontSize={fs}
+                        fill={on ? '#eef1f6' : '#9fb0c6'}
+                        fontWeight={on ? 600 : 400}
                       >
-                        {n.name}
+                        {n.item.name}
                       </text>
-                    ) : (
-                      <SkillLabel
-                        text={n.name}
-                        side={n.side}
-                        offset={24}
-                        active={active}
-                      />
-                    )}
-                  </g>
-                </motion.g>
-              );
-            })}
-          </motion.g>
+                    </>
+                  )}
+                </g>
+              </g>
+            );
+          })}
         </svg>
       </div>
     </div>
-  );
-}
-
-function SkillLabel({
-  text,
-  side,
-  offset,
-  active,
-}: {
-  text: string;
-  side: 'left' | 'right';
-  offset: number;
-  active: boolean;
-}) {
-  const fs = 16;
-  const dir = side === 'right' ? 1 : -1;
-  const w = text.length * fs * 0.6 + 16;
-  const rectX = side === 'right' ? offset : -(offset + w);
-  return (
-    <g>
-      <rect
-        x={rectX}
-        y={-fs / 2 - 6}
-        width={w}
-        height={fs + 12}
-        rx={3}
-        fill="#0a1124"
-        opacity={active ? 0.85 : 0.5}
-        stroke="#aebccd"
-        strokeOpacity={active ? 0.45 : 0}
-        strokeWidth={1}
-      />
-      <text
-        x={dir * (offset + 8)}
-        y={0}
-        textAnchor={side === 'right' ? 'start' : 'end'}
-        dominantBaseline="middle"
-        fontFamily="var(--font-body), sans-serif"
-        fontSize={fs}
-        fill={active ? '#ffffff' : '#9aa6b8'}
-      >
-        {text}
-      </text>
-    </g>
   );
 }

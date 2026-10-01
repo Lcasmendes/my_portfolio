@@ -1,7 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { siteUrl } from '@/data/site';
 
-const PATHS = ['', '/journey', '/projects', '/skills'];
+// Single-page site: the old /journey, /projects and /skills routes redirect home.
+const PATHS = [''];
 const LOCALES = ['pt', 'en'];
 
 export default function sitemap(): MetadataRoute.Sitemap {

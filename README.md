@@ -1,35 +1,32 @@
 # Lucas Mendes — Portfólio
 
-Portfólio pessoal em forma de site, com interface inspirada na UI do **Final Fantasy XV**
-(painéis HUD translúcidos, acentos em ciano, menu lateral retrátil).
+Portfólio pessoal em uma página única: fundo navy chapado, hero em formato de pôster
+(a palavra INTERFACE vira DADO enquanto a rolagem fica presa no hero) e detalhes
+inspirados nos menus de Final Fantasy (seleção por inversão, losangos, barra de abas).
 
 ## Stack
 
 - **Next.js 15** (App Router) + **React 19** + **TypeScript**
-- **Tailwind CSS** para estilização
+- **Tailwind CSS** (base) + classes de componente em `src/app/globals.css`
 - **next-intl** para internacionalização (🇧🇷 pt-BR / 🇺🇸 EN)
-- **Framer Motion** para transições suaves
-- **lucide-react** para ícones
+- Fontes **Geist** e **Geist Mono** via `next/font`
 
 ## Estrutura
 
 ```
 src/
-├── app/[locale]/        # páginas por seção do currículo
-│   ├── page.tsx         # Sobre (home / hero)
-│   ├── experience/      # Experiência
-│   ├── projects/        # Projetos & Acadêmico
-│   ├── education/       # Formação
-│   ├── skills/          # Habilidades
-│   └── contact/         # Contato
-├── components/          # componentes reutilizáveis (Sidebar, Panel, etc.)
+├── app/[locale]/
+│   ├── page.tsx         # página única: hero, projetos, habilidades, trajetória, contato
+│   ├── journey/ projects/ skills/   # rotas antigas, redirecionam para a seção da home
+│   └── not-found.tsx
+├── components/          # SiteHeader, HeroPoster, SkillTabs, QuestLog, CopyEmail, SiteFooter
 ├── messages/            # conteúdo traduzido (pt.json / en.json)
-├── data/profile.ts      # dados de contato e ordem das seções
+├── data/                # contato (profile.ts) e SEO (site.ts)
 └── i18n/                # configuração do next-intl
 ```
 
-Todo o conteúdo textual vive em `src/messages/{pt,en}.json`. Para editar o currículo,
-basta alterar esses dois arquivos — os componentes são genéricos.
+Todo o conteúdo textual vive em `src/messages/{pt,en}.json`, alinhado com o currículo em
+`public/cv/`. Para atualizar o site, basta alterar esses dois arquivos.
 
 ## Rodar localmente
 
