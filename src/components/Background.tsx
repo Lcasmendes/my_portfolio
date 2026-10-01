@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 // Deterministic dust motes (fixed values avoid SSR hydration mismatch).
 const DUST = [
@@ -23,22 +23,28 @@ const DUST = [
 ];
 
 export default function Background() {
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const root = useRef<HTMLDivElement>(null);
   const frame = useRef<number | null>(null);
 
-  // Subtle mouse parallax (pointer devices only, after mount).
+  // Subtle mouse parallax (pointer devices only, after mount). Writes CSS
+  // variables straight to the DOM — no React re-render per mouse move.
   useEffect(() => {
-    if (window.matchMedia('(hover: none)').matches) return;
+    const el = root.current;
+    if (!el) return;
+    if (
+      window.matchMedia('(hover: none)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    )
+      return;
     const onMove = (e: MouseEvent) => {
       if (frame.current) return;
       frame.current = requestAnimationFrame(() => {
         frame.current = null;
-        const x = (e.clientX / window.innerWidth - 0.5) * 2;
-        const y = (e.clientY / window.innerHeight - 0.5) * 2;
-        setOffset({ x, y });
+        el.style.setProperty('--mx', String((e.clientX / window.innerWidth - 0.5) * 2));
+        el.style.setProperty('--my', String((e.clientY / window.innerHeight - 0.5) * 2));
       });
     };
-    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mousemove', onMove, { passive: true });
     return () => {
       window.removeEventListener('mousemove', onMove);
       if (frame.current) cancelAnimationFrame(frame.current);
@@ -46,29 +52,43 @@ export default function Background() {
   }, []);
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      {/* soft, desaturated light pools with gentle parallax */}
+    <div
+      ref={root}
+      aria-hidden
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+      style={{ '--mx': 0, '--my': 0 } as React.CSSProperties}
+    >
+      {/* soft light pools — radial gradients instead of CSS blur (blur on large
+          animated layers is very costly to rasterize in Firefox) */}
       <div
-        className="absolute -left-40 top-[12%] h-[32rem] w-[32rem] rounded-full bg-accent/[0.06] blur-3xl animate-pulse-glow transition-transform duration-700 ease-out"
-        style={{ transform: `translate(${offset.x * 14}px, ${offset.y * 14}px)` }}
+        className="absolute -left-40 top-[12%] h-[40rem] w-[40rem] animate-pulse-glow will-change-[opacity,transform]"
+        style={{
+          background:
+            'radial-gradient(closest-side, rgba(79,195,214,0.07), transparent)',
+          transform: 'translate3d(calc(var(--mx) * 14px), calc(var(--my) * 14px), 0)',
+        }}
       />
       <div
-        className="absolute -right-32 bottom-[-6rem] h-[34rem] w-[34rem] rounded-full bg-[#1e2a42]/25 blur-3xl animate-pulse-glow transition-transform duration-700 ease-out"
+        className="absolute -right-32 bottom-[-6rem] h-[42rem] w-[42rem] animate-pulse-glow will-change-[opacity,transform]"
         style={{
-          transform: `translate(${offset.x * -20}px, ${offset.y * -20}px)`,
+          background:
+            'radial-gradient(closest-side, rgba(30,42,66,0.30), transparent)',
+          transform: 'translate3d(calc(var(--mx) * -20px), calc(var(--my) * -20px), 0)',
           animationDelay: '1.5s',
         }}
       />
 
       {/* drifting dust motes */}
       <div
-        className="absolute inset-0 transition-transform duration-1000 ease-out"
-        style={{ transform: `translate(${offset.x * 6}px, ${offset.y * 6}px)` }}
+        className="absolute inset-0"
+        style={{
+          transform: 'translate3d(calc(var(--mx) * 6px), calc(var(--my) * 6px), 0)',
+        }}
       >
         {DUST.map((p, i) => (
           <span
             key={i}
-            className={`absolute rounded-full animate-particle ${
+            className={`absolute rounded-full animate-particle will-change-[transform,opacity] ${
               i % 3 === 0 ? 'bg-accent/45' : 'bg-frost/40'
             }`}
             style={{
@@ -77,17 +97,17 @@ export default function Background() {
               width: `${p.s}px`,
               height: `${p.s}px`,
               animationDelay: `${p.d}s`,
-              filter: 'blur(0.5px)',
             }}
           />
         ))}
       </div>
 
-      {/* edge vignette for depth */}
+      {/* edge vignette for depth (static gradient — cheaper than a huge inset shadow) */}
       <div
         className="absolute inset-0"
         style={{
-          boxShadow: 'inset 0 0 200px 50px rgba(7, 12, 28, 0.75)',
+          background:
+            'radial-gradient(ellipse at center, transparent 45%, rgba(7,12,28,0.75) 100%)',
         }}
       />
     </div>
