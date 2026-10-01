@@ -40,7 +40,7 @@ h1, h2, h3 { margin: 0; color: var(--ivory); font-weight: 500; text-wrap: balanc
 /* ---------- header ---------- */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: rgba(10, 18, 34, 0.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 68px; }
-.brand { display: flex; align-items: center; gap: 12px; font: 500 15px/1 var(--f-sans); color: var(--ivory); }
+.brand { display: flex; align-items: center; gap: 12px; white-space: nowrap; font: 500 15px/1 var(--f-sans); color: var(--ivory); }
 .brand .mk { width: 28px; height: 28px; border-radius: 8px; background: var(--ivory); color: var(--ground); display: grid; place-items: center; font: 600 12px/1 var(--f-sans); letter-spacing: 0.02em; }
 .nav { display: flex; gap: 2px; }
 .nav a { position: relative; font-size: 14px; color: var(--text); padding: 8px 14px; border-radius: 8px; transition: background-color .15s, color .15s; }
@@ -49,6 +49,10 @@ h1, h2, h3 { margin: 0; color: var(--ivory); font-weight: 500; text-wrap: balanc
 .nav a.cur:hover { background: var(--ivory); color: var(--ground); }
 .right { display: flex; align-items: center; gap: 16px; font: 400 12px/1 var(--f-mono); color: var(--dim); }
 .right b { color: var(--ivory); font-weight: 500; }
+.social { display: flex; gap: 2px; }
+.social a { display: grid; place-items: center; padding: 6px; border-radius: 6px; color: var(--dim); }
+.social a:hover { color: var(--ivory); background: var(--surface-2); }
+.social a:focus-visible { outline: 2px solid var(--blue); }
 .lang { display: flex; gap: 2px; }
 .lang button { all: unset; cursor: pointer; padding: 6px 7px; border-radius: 6px; color: var(--dim); font: 500 12px/1 var(--f-mono); }
 .lang button[aria-current="true"] { color: var(--ivory); }
@@ -59,13 +63,14 @@ h1, h2, h3 { margin: 0; color: var(--ivory); font-weight: 500; text-wrap: balanc
 .menu-panel { display: none; }
 @media (max-width: 860px) {
   .nav { display: none; }
-  .clock { display: none; }
   .menu-btn { display: inline-block; }
+  .right { gap: 8px; }
   .menu-panel { display: grid; gap: 2px; padding: 8px var(--gutter) 16px; border-bottom: 1px solid var(--rule); }
   .menu-panel[hidden] { display: none; }
   .menu-panel a { padding: 12px 14px; border-radius: 10px; font-size: 16px; color: var(--ivory); }
   .menu-panel a:hover, .menu-panel a:focus-visible { background: var(--ivory); color: var(--ground); outline: none; }
 }
+@media (max-width: 380px) { .brand .bn { display: none; } }
 
 /* ---------- hero poster ---------- */
 .pin { position: relative; height: calc(max(560px, 100svh - 68px) + 130vh); }
