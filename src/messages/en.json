@@ -51,6 +51,16 @@
     "github": "More on GitHub",
     "items": [
       {
+        "name": "TALYN",
+        "status": "Live",
+        "live": true,
+        "description": "The company I'm founding to build custom software for small and medium businesses: websites, AI and automations that showcase products and drive sales. I built the company website with React and TypeScript, with light and dark themes.",
+        "image": "/projects/talyn.png",
+        "imageAlt": "TALYN website home page",
+        "url": "https://talyn-site.vercel.app/",
+        "techs": ["React", "TypeScript"]
+      },
+      {
         "name": "BIP-Brain",
         "status": "Live",
         "live": true,

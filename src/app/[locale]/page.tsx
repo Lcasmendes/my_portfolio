@@ -49,6 +49,8 @@ export default async function HomePage({
 
   const figs = tIntro.raw('figs') as { value: string; label: string }[];
   const projects = tProj.raw('items') as ProjectItem[];
+  // With an odd number of screenshot cards, the first one spans the full row so the 2-column grid has no gap.
+  const featureFirst = projects.filter((p) => p.image).length % 2 === 1;
   const categories = tSkills.raw('categories') as SkillCategory[];
   const journey = tJourney.raw('items') as JourneyItem[];
   const cvHref = `/cv/Lucas_Mendes_CV_${locale === 'en' ? 'en' : 'pt'}.pdf`;
@@ -94,9 +96,9 @@ export default async function HomePage({
             <h2>{tProj('title')}</h2>
           </div>
           <div className="work">
-            {projects.map((p) =>
+            {projects.map((p, i) =>
               p.image ? (
-                <a className="card" key={p.name} href={p.url} target="_blank" rel="noopener noreferrer">
+                <a className={featureFirst && i === 0 ? 'card wide' : 'card'} key={p.name} href={p.url} target="_blank" rel="noopener noreferrer">
                   <div className="shot">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={p.image} alt={p.imageAlt ?? p.name} loading="lazy" />

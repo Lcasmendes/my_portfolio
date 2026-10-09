@@ -51,6 +51,16 @@
     "github": "Mais no GitHub",
     "items": [
       {
+        "name": "TALYN",
+        "status": "Em produção",
+        "live": true,
+        "description": "Empresa que estou fundando para desenvolver software sob medida para pequenos e médios negócios: sites, IA e automações para apresentar produtos e alavancar vendas. Desenvolvi o site institucional em React e TypeScript, com tema claro e escuro.",
+        "image": "/projects/talyn.png",
+        "imageAlt": "Página inicial do site da TALYN",
+        "url": "https://talyn-site.vercel.app/",
+        "techs": ["React", "TypeScript"]
+      },
+      {
         "name": "BIP-Brain",
         "status": "Em produção",
         "live": true,
