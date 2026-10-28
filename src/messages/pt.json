@@ -54,7 +54,7 @@
         "name": "TALYN",
         "status": "Em produção",
         "live": true,
-        "description": "Empresa que estou fundando para desenvolver software sob medida para pequenos e médios negócios: sites, IA e automações para apresentar produtos e alavancar vendas. Desenvolvi o site institucional em React e TypeScript, com tema claro e escuro.",
+        "description": "Site institucional de uma empresa de software sob medida para pequenos e médios negócios, com o objetivo de apresentar os serviços de sites, IA e automações e converter visitantes em clientes. Desenvolvido em React e TypeScript, com layout responsivo e tema claro e escuro.",
         "image": "/projects/talyn.png",
         "imageAlt": "Página inicial do site da TALYN",
         "url": "https://talyn-site.vercel.app/",

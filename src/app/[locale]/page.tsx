@@ -53,7 +53,7 @@ export default async function HomePage({
   const featureFirst = projects.filter((p) => p.image).length % 2 === 1;
   const categories = tSkills.raw('categories') as SkillCategory[];
   const journey = tJourney.raw('items') as JourneyItem[];
-  const cvHref = `/cv/Lucas_Mendes_CV_${locale === 'en' ? 'en' : 'pt'}.pdf`;
+  const cvHref = `/cv/${locale === 'en' ? 'Resume' : 'Curriculo'}_Lucas_Silva_Mendes.pdf`;
 
   return (
     <>
